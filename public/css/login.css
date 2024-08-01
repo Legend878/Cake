@@ -1,0 +1,59 @@
+.login-con{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    padding-top: 50px;
+    width: 400px;
+   background-color: snow;
+    /* background: transparent; */
+    border: 2px solid rgb(151, 73, 230);
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    border-radius: 20px;
+    /* backdrop-filter: blur(20px); */
+    box-shadow: 0 0 30px rgb(3, 3, 3);
+    justify-content: center;
+}
+.login-container{
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Занимает всю высоту экрана */
+    margin: 0;
+}
+
+.login-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+   gap:10px;
+}
+.card-body{
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    gap: 10px;
+    
+}
+.login-email, .login-password{
+    flex-direction: column;
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+
+}
+.login-email input,.login-password input{
+    display: flex;
+    padding: 10px;
+    border-radius: 8px;
+    
+}
+.card-body form{
+    gap: 20px; 
+    display: flex;
+    flex-direction: column;
+}

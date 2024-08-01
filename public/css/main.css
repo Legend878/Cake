@@ -1,0 +1,378 @@
+body{
+    background-color:#eeeeee;
+
+   
+}
+main{
+    padding: 0;
+    margin: 0;
+    
+   
+    
+}
+
+.news{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 120px;
+    background-color: rgb(0, 0, 0);
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 100%;
+    
+
+}
+
+.news svg, a{
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    color:white;
+    cursor: pointer;
+    align-items: center;
+    position: relative;
+
+}
+
+
+
+.menu_dropdown{
+    display:flex;
+    flex-direction: column;
+    background:rgb(212, 207, 207);
+    border-radius: 8px;
+    padding: 8px;
+    margin-top: 10px;
+    align-items: center;
+  
+    
+   
+    
+
+}
+.menu_dropdown a{
+    color:rgb(0, 0, 0);
+    transition: 0.2s linear;
+    border-radius: 8px;
+    padding: 5px;
+    flex-direction: row;
+   
+    
+    
+}
+.menu_dropdown a:hover{
+    color:white;
+    align-items: center;
+    outline: 2s solid;
+    border-radius: 8px; 
+    outline: 2px solid;
+    
+   
+   
+    
+   
+}
+
+
+
+
+
+
+
+.name_lenta{
+    margin: 10px;
+    padding: 20px;
+  
+
+   
+   
+    
+}
+.name_lenta a{
+    align-items: flex-start;
+    font-size: 25px;
+    border-radius: 9px;
+    color:rgb(0, 0, 0);
+    padding: 2px;
+    width: 17%;
+    
+
+}
+.name_lenta a:hover{
+    color:red;
+}
+    
+   
+
+
+
+.lenta{
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+    box-shadow: 0px 1px 0 0;
+    justify-content: center;
+    white-space: nowrap;
+    overflow-x: auto;
+    
+   
+}
+.catalog-lenta{
+  display: grid;
+   grid-template-columns: repeat(4,300px);
+   justify-content: center;
+}
+.catalog-cake_card{
+  width: 90%;
+    box-shadow: 0 0 2px 0;
+    gap: 10px;
+    background-color: rgb(245, 245, 245);
+    padding: 20px;
+    flex-direction: column;
+    border-radius: 12px;
+    margin: 20px; /* Отступ между карточками */
+    border: 1px solid #ccc; /* Граница карточки */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Тень карточки */
+}
+
+.cake_card{
+    width: 30%;
+    box-shadow: 0 0 2px 0;
+    gap: 10px;
+    background-color: rgb(245, 245, 245);
+    padding: 20px;
+    flex-direction: column;
+    border-radius: 12px;
+    margin: 20px; /* Отступ между карточками */
+    border: 1px solid #ccc; /* Граница карточки */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Тень карточки */
+}
+
+.image img{
+    display:flex;
+    max-width: 100%;
+    border-radius: 5%;
+    object-fit: cover;
+    height: auto;
+    margin-bottom: 10px; /* Отступ между изображением и текстом */
+
+
+}
+.image:hover{
+    
+    background-color: rgb(159, 10, 228);
+    box-shadow: 0 0 20px 0 rgb(159, 10, 228);
+}
+
+.info_cake{
+    padding: 10px;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    gap: 5px;
+}
+
+.info_cake h2{
+    display: flex;
+    font-weight: bold;
+    font-size: 18px; /* Размер заголовка */
+    margin-bottom: 5px; /* Отступ между заголовком и описанием */
+  
+}
+
+
+.button button{
+    width: 100%;
+    padding: 5px 0;
+    font-size: 14px;
+    align-items: center;
+    border-radius: 8px;
+    border: none;
+    background-color: rgb(201, 89, 245);
+    transition: .2s linear;
+    cursor: pointer;
+}
+.button  button:hover{
+    background-color: rgb(159, 10, 228);
+    box-shadow: 0 0 20px 0 rgb(159, 10, 228);
+
+}
+.button button:active{
+    background-color: rgb(212, 0, 255);
+    box-shadow: 0 0 20px 0 rgb(159, 10, 228);
+    transform:translate3d(2px)
+   
+
+}
+.katalog {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .lenta > div {
+    flex: 0 0 auto;
+    width: 220px;  /* Ширина элемента */
+    height: 320px; /* Высота элемента */
+  }
+
+  .about{
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    padding: 20px 50px
+  }
+  .text{
+    margin: 20px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+   justify-content: center;
+   flex-direction: column;
+
+  }
+  .text img{
+    box-sizing: border-box;
+    width: 40%;
+  }
+  .text li{
+    font-size: 20px;
+  }
+
+  .question{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+    position: relative;
+
+  }
+
+  .question_container a{
+    color:black; 
+    gap:10px;
+    display: flex;
+
+ }
+ .anime img{
+    width: 100%;
+    
+ }
+ .button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+ }
+  .button span {
+    font-weight: bold;
+    font-size: 16px; /* Размер цены */
+  }
+  
+
+
+
+.CreateMain{
+
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;    
+    padding: 10px;
+    box-shadow: 0 0 2px 0;
+    height: auto;
+    border-radius: 8px;
+    background-color: rgb(236, 103, 230);
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    gap: 10px;
+  }
+
+  .WindowForm{
+    display: flex;
+    flex-direction: column;
+    gap:30px;
+
+  }
+  .AddProduct{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 18px;
+  }
+  .CreateForm{
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .CreateMain label{
+    display: flex;
+    gap: 30px;
+  }
+
+  .select{
+    display: flex;
+    gap: 5px;
+  }
+  .CreateFormChoose{
+    gap:5px;
+max-width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ChooseProduct{
+    font-size: 18px;
+
+  }
+  
+ 
+  .CreateForm input, .ChooseProduct{
+    display: flex;
+    border-radius: 8px;
+    padding: 5px;
+    font-size: 18px;
+    
+  }
+
+  .SendProduct{
+    width: 100%;
+    padding: 5px 0;
+    font-size: 14px;
+    align-items: center;
+    border-radius: 8px;
+    border: none;
+    background-color: rgb(248, 22, 6);
+    transition: .2s linear;
+    cursor: pointer;
+  }
+  .SendProduct input{
+    display: flex;
+    
+  }
+    .SendProduct:hover{
+      background-color: rgb(32, 238, 14);
+      box-shadow: 0 0 20px 0 rgb(227, 243, 6);
+    }
+  
+      .SendProduct:active{
+      background-color: rgb(21, 255, 0);
+      box-shadow: 0 0 20px 0 rgb(230, 255, 1);
+      transform:translate3d(2px)
+     
+  
+  }
+  
+  .Description{
+    padding: 10px;
+    height: 200px;
+  resize: none; 
+  font-size: 18px;
+  }
+
+  

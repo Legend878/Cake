@@ -1,0 +1,77 @@
+
+.modalwindow {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.507);
+}
+
+.modalcontent {
+    position: relative;
+    margin: auto;
+    padding: 40px;
+    border: 1px solid #000000;
+    width: 80%;
+    max-width: 500px;
+    background-color: white;
+}
+
+
+.modalimage {
+    width: 100%;
+    height: auto; /* Сохранить пропорции изображения */
+}
+
+.closebutton {
+    position: absolute;
+    top: 15px;
+    right: 5px;
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(247, 0, 0);
+    border-radius: 8px;
+    box-shadow: 0 0px 2px 0;
+    display: flex;
+    flex-direction: row;
+    transform: rotate(90deg);
+    transform-origin: top left;
+}
+.closebutton:hover,
+.closebutton:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  
+}
+.conteiner-center{
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.titlecake{
+
+    position: relative;
+    width: 5%;
+    padding: 30px;
+
+}
+fieldset{
+    border: none;
+}
+.conteiner-right .conteiner-left{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+
+  
+  

@@ -1,0 +1,206 @@
+.modal {
+   /*display: none;
+    position: fixed;*/
+    z-index: 1000;
+    left: 0;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.507);
+  }
+  
+  /* Стили содержимого модального окна */
+  .modal-content {
+    position: relative;
+    margin: auto;
+    padding: 40px;
+    border: 1px solid #000000;
+    width: 80%;
+    max-width: 500px;
+    background-color: white;
+    
+  }
+  
+  /* Стили заголовка модального окна */
+  .modal-header {
+    padding: 10px 15px;
+    background-color: #d111a7;
+    color: rgb(255, 255, 255);
+    border-radius: 8px;
+    background-color: #000;
+    
+  }
+  
+  /* Стили кнопки закрытия модального окна */
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 5px;
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(247, 0, 0);
+    border-radius: 8px;
+    box-shadow: 0 0px 2px 0;
+    display: flex;
+    flex-direction: row;
+    transform: rotate(90deg);
+    transform-origin: top left;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  /* Стили тела модального окна */
+  .modal-body {
+    padding: 20px 25px;
+    box-shadow: 0px 1px 0px 0px;
+  }
+  
+  /* Стили футера модального окна */
+  .modal-footer {
+    padding: 10px 15px;
+    background-color: #ffffff;
+    border-radius: 10px;
+  }
+  
+  
+  /* Стили кнопки оформления заказа */
+  .btn-primary {
+    border: 2px solid #ffffff;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: 18px;
+    border-radius: 8px;
+    padding: 3px 5px 5px 5px;
+    background: #00ee5b;
+    color: snow;
+    cursor: pointer;
+    
+   
+  }
+  
+  .btn-primary:hover,
+  .btn-primary:focus {
+    background-color: rgb(21, 255, 0);
+    box-shadow: 0 0 10px 0 rgb(0, 243, 12);
+    transform:translate3d(2px);
+    color: white;
+    border-radius: 8px;
+    
+  }
+
+  .info_users{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap:15px;
+    
+
+
+  }
+  .info_users span{
+    color:black;
+    
+
+  }
+  .info_users input, .span{
+    padding: 10px;
+    width: 300px;
+    display: flex;
+    border-radius: 8px;
+    
+  }
+  .comment textarea{
+   max-height: 70px;
+    max-width: 400px;
+    padding: 10px;
+    display: flex;
+    border-radius: 8px;
+  }
+  .ChooseDelivery {
+    width: 200px;
+    padding: 5px;
+    margin-right: 10px;
+  }
+  .form_radio_btn {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .form_radio_btn input[type=radio] {
+    display: none;
+  }
+  .form_radio_btn label {
+    display: inline-block;
+    cursor: pointer;
+    padding: 0px 15px;
+    line-height: 34px;
+    border: 1px solid #999;
+    border-radius: 6px;
+    user-select: none;
+  }
+   
+  /* Checked */
+  .form_radio_btn input[type=radio]:checked + label {
+    background: #41f330;
+  }
+   
+  /* Hover */
+  .form_radio_btn label:hover {
+    color: #2aaa50;
+      border-color: #41f330;
+  }
+   .fotka{
+      display: flex;
+   align-items: center;
+   gap:5px;
+   flex-direction: column;
+  
+   }
+   .fotka span{
+    display: flex !important;
+      font-size: 15px;
+      
+   }
+   .fotka input{
+    color: #d111a7;
+
+   }
+   .fotka input[type=file]{
+     
+      width: 350px;
+      max-width: 100%;
+      color: #444;
+      padding: 5px;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid #555;
+    
+   }
+   .form_users span{ 
+    display: flex !important;
+   }
+   .date2 span{
+    display: contents !important;
+    flex-direction: column;
+   }
+   .Form_street span{
+    display: contents !important;
+
+   }
+   .delivery{
+    flex-direction: column;
+    display: flex;
+    gap:5px;
+
+   }
+   
+  
+
