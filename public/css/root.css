@@ -53,6 +53,9 @@ a {
     .anime img{
         display: none;
     }
+    .info{
+        display: none !important;
+    }
     
 
 }
@@ -70,6 +73,14 @@ a {
     }
     .anime img{
         display: none;
+    }
+
+    .info, .phone, .work{
+        display: none !important;
+    }
+
+    .footer-container{
+        display: none !important;
     }
     
     
