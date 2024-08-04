@@ -100,7 +100,12 @@
               </label>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary">Оформить заказ</button>
+              {{-- <button type="submit" class="btn btn-primary">Оформить заказ</button> --}}
+              <form action="/payment/initiate" method="POST">
+                @csrf
+                <button type="submit">Оплатить</button>
+            </form>
+            
             </div>
           </div>
 

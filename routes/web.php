@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\QuestionController;
 use GuzzleHttp\Middleware;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\AdminMiddleware;
@@ -26,7 +27,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
     Route::get('/basket',[OrderController::class,'show'])->name('basket');
     Route::post('/basket/{id}',[OrderController::class,'addBasket'])->name('basketAdd');
     Route::post('/basket',[OrderController::class,'ShowOrder'])->name('ShowOrder');
-
+    Route::post('/payment/initiate', [PaymentController::class, 'initiatePayment']);
 
 //});
 
