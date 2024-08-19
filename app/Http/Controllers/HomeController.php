@@ -27,6 +27,9 @@ class HomeController extends Controller
         $myssovyi = Product::where('category_id', 2)->get(); //муссовый торт
         $classic = Product::where('category_id', 3)->get(); //классический торт
         $capcake = Product::where('category_id', 4)->get(); //капкйки
+
+        
+        
         return view('index',compact('bento','myssovyi','classic','capcake'));
     }
     

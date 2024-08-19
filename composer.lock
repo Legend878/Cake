@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "71837c5d96b04efe9ddaaba194ceb165",
+    "content-hash": "00628cf56190149bbc7b66af714625aa",
     "packages": [
         {
             "name": "brick/math",
@@ -1185,6 +1185,54 @@
                 }
             ],
             "time": "2024-07-05T13:35:01+00:00"
+        },
+        {
+            "name": "kenvel/laravel-tinkoff",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kenvel/laravel-tinkoff.git",
+                "reference": "df7372fe17b256f663fee780bda3c04d8b5ed82d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kenvel/laravel-tinkoff/zipball/df7372fe17b256f663fee780bda3c04d8b5ed82d",
+                "reference": "df7372fe17b256f663fee780bda3c04d8b5ed82d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1 || ^8.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Kenvel\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dmitry Kenvel",
+                    "email": "dimult@yahoo.com",
+                    "homepage": "https://github.com/kenvel/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple Tinkoff bank acquiring library.",
+            "homepage": "https://github.com/kenvel/laravel-tinkoff",
+            "keywords": [
+                "acquiring",
+                "tinkoff"
+            ],
+            "support": {
+                "issues": "https://github.com/kenvel/laravel-tinkoff/issues",
+                "source": "https://github.com/kenvel/laravel-tinkoff/tree/master"
+            },
+            "time": "2022-04-20T11:39:58+00:00"
         },
         {
             "name": "laravel/framework",
@@ -8019,7 +8067,7 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,

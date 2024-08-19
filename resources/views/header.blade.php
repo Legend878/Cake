@@ -24,7 +24,7 @@
                 <nav class="header_links">
                     @if(auth()->guard('admin')->check()) 
                     <a href="{{ route('Create') }}">Создание торта</a>
-                    <a href="#">Мои заказы</a>
+                    <a href="{{route('admin')}}">Мои заказы</a>
                     <a href="#">Все товары</a>
                     <a href="#">Статистика</a>
                     <form class="button" action="{{ route('logout') }}" method="POST" style="display: inline;">

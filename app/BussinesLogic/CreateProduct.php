@@ -2,7 +2,7 @@
 namespace App\BussinesLogic;
 
 use App\Models\Product;
-
+use Intervention\Image\Facades\Image;
 class CreateProduct{
     protected $name_cake;
     protected $image;
@@ -79,8 +79,9 @@ class CreateProduct{
 
     private function storeImage()
 {
+
     // Сохранение файла в папку 'public/cakeimg'
-        $path = $this->image->store('cakeimg', 'public'); // Сохраняем файл в 'storage/app/public/cakeimg'
+            $path = $this->image->store('cakeimg', 'public'); // Сохраняем файл в 'storage/app/public/cakeimg'
 
         return $path; // Возвращаем путь к файлу
 }

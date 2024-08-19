@@ -9,11 +9,13 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\QuestionController;
 use GuzzleHttp\Middleware;
-use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\AdminMiddleware;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\StatusController;
 
 //Route::middleware(['guest'])->group(function () { 
     Route::get('/',[HomeController::class,'index'])->name('home');
@@ -26,12 +28,13 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
     
     Route::get('/basket',[OrderController::class,'show'])->name('basket');
     Route::post('/basket/{id}',[OrderController::class,'addBasket'])->name('basketAdd');
-    Route::post('/basket',[OrderController::class,'ShowOrder'])->name('ShowOrder');
-    Route::post('/payment/initiate', [PaymentController::class, 'initiatePayment']);
-
+    // Route::post('/basket',[OrderController::class,'setZakaz'])->name('setZakaz');
+    Route::post('/create-payment', [PaymentController::class, 'createPayment'])->name('pay');
+    Route::get('/status',[StatusController::class,'Status'])->name('status');
 //});
 
 
+Route::post('/payment', [PaymentController::class, 'createPayment']);
 Auth::routes();
 
 
@@ -44,6 +47,7 @@ Route::middleware('admin')->group(function () {
      Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
      Route::get('/Create',[CreateController::class,'index'])->name('Create');
     Route::post('/Create',[CreateController::class,'CreateAdd'])->name('Create.product');
+    Route::get('/admin',[AdminController::class,'checkPaymentStatus'])->name('admin');
 });
 
 

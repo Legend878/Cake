@@ -37,9 +37,9 @@
             
             
         </div>
-
+   
         <div class="modalwindow">
-            <div class="modalcontent">
+            <div class="modalcontent"> 
               <div class="modal-header">
                 <h2 id="caketitle"></h2>
               </div>
@@ -48,8 +48,7 @@
                 <div class="imageCake">
               <img src="" class="modalimage">
             </div>
-
-    
+         
 
 
                 </div>
@@ -123,13 +122,12 @@
                </svg> 
            </div>
             </div>
-    <form action="addCard.php" method="post"> 
         
      
             <div class="lenta" >
                 
                 @foreach ($bento as $bentos)  
-                <form action="{{route('basketAdd',$bentos)}}" method="POST">
+                <form action="{{route('basketAdd', $bentos->id)}}" method="POST">
                     @csrf                  
                 
                 <div class="cake_card">
@@ -143,7 +141,6 @@
                     <span name = "price"  value="{{ $bentos->price }}">{{ $bentos->price }}</span>
                         <button type="submit"  id="modalInput" >В корзину</button>
                     </div>
-            
                 </div>
             </form>
                 @endforeach
@@ -154,7 +151,6 @@
 
            
 
-    </form>
   
       
         

@@ -139,12 +139,9 @@ main{
 }
 
 .cake_card{
-    width: 30%;
-    box-shadow: 0 0 2px 0;
-    gap: 10px;
+    width: 70%;
     background-color: rgb(245, 245, 245);
     padding: 20px;
-    flex-direction: column;
     border-radius: 12px;
     margin: 20px; /* Отступ между карточками */
     border: 1px solid #ccc; /* Граница карточки */

@@ -56,7 +56,13 @@ a {
     .info{
         display: none !important;
     }
-    
+     .trubleblock{
+        flex-direction: column !important;
+    }
+    .doubleblock{
+        flex-direction: column !important;
+    }
+     
 
 }
 @media only screen and (max-width: 600px){
@@ -83,6 +89,20 @@ a {
         display: none !important;
     }
     
-    
+    .trubleblock{
+        flex-direction: column !important;
+        width: 300px !important;
+    }
+    .doubleblock{
+        flex-direction: column !important;
+        width: 300px !important;
+    }
+    .block_client{
+        flex-direction: column !important;
+    }
+    .info_users input, .span {
+       
+        width: auto !important;
+    }
     
 }

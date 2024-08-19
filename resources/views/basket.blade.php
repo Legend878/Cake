@@ -1,11 +1,14 @@
 @include('header')
 
-<form class="obrabotka" action="{{route('ShowOrder')}}"  method="post" enctype="multipart/form-data">
-  @csrf
+<form class="obrabotka" action="{{route('pay'), $totalPrice}}"  method="post" enctype="multipart/form-data">
     <div id="cart-modal" class="modal">
-        <div class="modal-content" >
+      @csrf
+       {{--обьеним 2 блока--}}
+         <div class="modal-content"> {{-- первый блок корзины с товаррами --}}
+          <div class ="trubleblock">
+          <div class="doubleblock">
+          <div class="block_header">
             <div class="modal-header">
-              <span class="close">&times;</span>
               <h2>Корзина</h2>
             </div>
             <div class="modal-body">
@@ -30,84 +33,168 @@
                       @endforeach
                     
                   </tbody>
-                   <tfoot>
-                    <tr>
-                      <td>Итог</td>
-                      <td>{{$totalPrice}}</td>  
-                      <td>{{$item['price'] * $item['quantity'] }}</td> 
-                    </tr>
-
-                  </tfoot> 
+                  
+                    
+                 
               </table>
-          @else
+               @else
               <p>Ваша корзина пуста.</p>
-          @endif
+               @endif
 
           
         
 
             </div>
-            <div class="info_users">
-              <label class="form_users">
-                  <span>Ваше ФИО</span>
-                  <input type="text" name="name" placeholder="Как к вам можно обращаться?"  autocomplete="username" autofocus >
-              </label>
-              <label class="form_users" >
+          </div>
+
+          <div class="block_body"> 
+
+            <div class="modal-header">
+              <h2>Мои Данные</h2>
+            </div>  
+
+            <div class="info_users"> {{--второй блок инфа пользователя --}}
+{{--1 блок--}}
+              <div class="block_client">
+
+              <div class="info_client">
+                <span>Получатель</span>
+              </div>
+
+              <div class="client">
+
+                <div class="client_name_lastname">
+  
+                <label class="form_users">
+                  <span>Ваше Имя</span>
+                  <input type="text" name="name"   autocomplete="username" autofocus >
+                </label>
+                <label class="form_users" >
                   <span>Контактный номер телефона</span>
                   <input type="tel" name="number_phone" value ="+7" placeholder="+7 999 999 99 99"   autocomplete />
               </label>
-              <label class="form_users">
-                  <span>Ваш Email</span>
-                  <input type="Email" name="Email" placeholder="Natale@mail.ru" autocomplete>
+                
+
+                </div>
+                <div class="client_connection">
+
+                  <label class="form_users">
+                    <span>Ваша Фамилия</span>
+                    <input type="text" name="lastname"  autocomplete="username" autofocus >
+                    </label>
+            <label class="form_users">
+                <span>Ваш Email</span>
+                <input type="Email" name="Email" placeholder="Natale@mail.ru" autocomplete>
+            </label>
+
+                </div>
+              </div>
+              </div>
+{{--..--}}
+{{--2 блок--}}
+              <div class="block_client">
+
+                <div class="info_client">
+                  <span>Доставка</span>
+                </div>
+                <div class="double_client">
+
+                <div class="form_radio_btn">
+                  
+                  @foreach($delivery as $deliveries)
+                  <input id="{{$deliveries->id}}" type="radio" name="delivery"  checked > 
+                  <label for="{{$deliveries->id}}">{{$deliveries->type_del}}</label>
+                  @endforeach
+                </div>
+                <div class="client_delivery">
+
+              <label class="Form_street">
+                  <span>Улица</span>
+                  <input type="text" name="street" placeholder="Улица Мира 1">
               </label>
               <label class="Form_street">
-                  <span>Ваш точный Адрес</span>
-                  <input type="text" name="street" placeholder="Ул. Трехсвятская, дом 34, подьезд 1,этаж 1, кв 1">
+              <span>Этаж</span>
+              <input type="text" name="up" placeholder="1">
               </label>
+              <label class="Form_street">
+            <span>Подъезд</span>
+            <input type="text" name="padik" placeholder="2">
+            </label>
+            <label class="Form_street">
+              <span>Квартира</span>
+              <input type="text" name="kv" placeholder="52">
+            </label>
               
               </label>
               <label class="date2">
                   <span>Дата доставки</span>
                   <input type="date" name="date2" />
               </label>  
-              <div class="form_radio_btn">
-              <input id="radio-1" type="radio" name="radio" value="1" checked>
-              <label for="radio-1">Самовывоз</label>
-              <input id="radio-2" type="radio" name="radio" value="2" checked>
-              <label for="radio-2">Доставка</label>
-            </div>
-              
-              
               <form class="delivery">
-                  <label for="delivery-time">Время доставки / Самовывоза</label>
+                <label for="delivery-time">Время доставки / Самовывоза
                   <select class="ChooseDelivery" id="delivery-time">
-                    <option value="09:00-11:00" name="delivery">09:00 - 11:00</option>
-                    <option value="11:00-13:00" name="delivery">11:00 - 13:00</option>
-                    <option value="13:00-15:00" name="delivery">13:00 - 15:00</option>
-                    <option value="15:00-17:00" name="delivery">15:00 - 17:00</option>
-                    <option value="15:00-17:00" name="delivery">17:00 - 19:00</option>
-                    <option value="15:00-17:00" name="delivery">19:00 - 21:00</option>
+                    @foreach($time as $times)
+                    <option value="{{$times->id}}" name="Time">{{$times->time}}</option>
+                    @endforeach
+                    
                   </select>
-                </form>
+                </label>
+                
+              </form>
+              
+              </div>
+                </div>
+              </div>
+
+              {{--222--}}
+              
+               {{-- t.UkYs6EaOKyFErY6I-eKMpUxlGHT1SV_jFKes0ZXbLYpJa5TYvek18bKsKSO0x_jXObo0s5HjbWLNq1zC1R4dCQ --}}
               <label class="comment">
                   <span>Комментарий</span>
-                  <textarea name="comm" cols="50" rows="5"  placeholder="Ваши пожелания к заказу, поменять цвет покрытия, изменить надпись, добавить рисунок"></textarea>
+                  <textarea name="comment" cols="50" rows="5"  placeholder="Ваши пожелания к заказу, поменять цвет покрытия, изменить надпись, добавить рисунок"></textarea>
               </label>
               <label class="fotka">
                 <span>Хотите прикрепить свой рисунок?</span>
                 <input type="file" value="Картинка" name="Cakefoto">
-
               </label>
-            </div>
-            <div class="modal-footer">
-              {{-- <button type="submit" class="btn btn-primary">Оформить заказ</button> --}}
-              <form action="/payment/initiate" method="POST">
-                @csrf
-                <button type="submit">Оплатить</button>
-            </form>
-            
-            </div>
+              
           </div>
+
+          </div>
+
+         </div> 
+
+            <div class="modal-footer">
+              <div class="total">
+                @if(session('cart'))
+                <tr>
+                  <td>Итог</td>
+
+                  <td>{{$totalPrice}}</td>   
+                  {{-- <td>{{$item['price'] * $item['quantity'] }}</td>  --}}
+                </tr>
+                <input type="hidden" name="frame" value="true">
+              <button type="submit" class="btn btn-primary">Оформить заказ</button>
+                @endif
+
+              </div>
+              
+              {{-- <form action="{{route('pay')}}" method="POST"> --}}
+                {{-- @csrf --}}
+                 {{-- <input type="hidden" name="TerminalKey" value="1722688466757DEMO">  Эта штука не так важно --}}
+                {{-- <label for="amount">Сумма (в рублях):</label>  --}}
+                {{--  <input type="number" name="amount" id="amount" min="1" required>      это получается полная сумма которая total            --}}
+                {{-- <input type="hidden" name="OrderId" value="123456"> --}}
+                {{-- <input type="hidden" name="Description" value="Описание платежа">  --}}
+                {{-- <input type="email" name="Email" value="user@example.com">
+                <input type="phone" name="Phone" value="89012345678">
+                <input type="hidden" name="Name" value="Имя покупателя">  --}}
+                {{-- <input type="hidden" name="frame" value="true"> <!-- Убедитесь, что значение true -->
+                <button type="submit">Оплатить</button> --}}
+            {{-- </form> --}}
+          </div>
+        </div>
+      </div>
 
    
   </div>

@@ -5,6 +5,8 @@ use App\Models\OrderUser;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\BussinesLogic\Zakaz;
+use App\Models\Delivery;
+use App\Models\Time;
 
 class OrderController extends Controller
 {
@@ -13,6 +15,9 @@ class OrderController extends Controller
 
     public function show(){
 
+        $delivery = Delivery::get();
+        $time = Time::get();
+
              // Получаем данные из сессии
              $cart = session('cart', []);
         
@@ -20,12 +25,13 @@ class OrderController extends Controller
              $zakaz = new Zakaz(0); // ID не важен для подсчета
              $totalPrice = $zakaz->getTotal(); // Получаем итоговую стоимость
             
-             return view('basket', compact('cart', 'totalPrice')); // Передаем переменные в представление
+             return view('basket', compact('cart', 'totalPrice','delivery','time')); // Передаем переменные в представление
       //  return view('basket');
     }
 
 
     public function addBasket(Request $request, $id){
+
         $zakaz = new Zakaz($id);
 
             $value =  $zakaz->SearchProduct();
@@ -82,5 +88,5 @@ class OrderController extends Controller
 //   return redirect()->route('basket')->with('value',$value); //->with('success', 'Товар добавлен в корзину!');
 //     }
 
-
+     
 }
