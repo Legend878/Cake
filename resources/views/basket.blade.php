@@ -28,7 +28,8 @@
                               <td>{{ $item['name_cake'] }}</td>
                               <td>{{ $item['quantity'] }}</td>
                               <td>{{ $item['price'] }} руб.</td>
-
+              
+                          
                             </tr>
                       @endforeach
                     
@@ -102,11 +103,39 @@
                 <div class="form_radio_btn">
                   
                   @foreach($delivery as $deliveries)
-                  <input id="{{$deliveries->id}}" type="radio" name="delivery"  checked > 
-                  <label for="{{$deliveries->id}}">{{$deliveries->type_del}}</label>
+                  <input id="{{$deliveries->id}}" type="radio" name="delivery" value="{{$deliveries->type_del}}" onchange="updateText()"  @if($loop->first) checked @endif  > 
+                  <label id="selected-delivery" for="{{$deliveries->id}}">{{$deliveries->type_del}}</label>
                   @endforeach
                 </div>
-                <div class="client_delivery">
+
+                <style>
+                  #delivery-info, #pickup-info {
+                      display: none; /* Скрываем оба блока по умолчанию */
+                  }
+              </style>
+                
+
+<!-- Блок для самовывоза -->
+<div id="pickup-info">
+  {{-- <p>Информация о самовывоз!!!е.</p> --}}
+  <label class="date2">
+    <span>Дата самовывоза</span>
+    <input type="date" name="date2" />
+</label>  
+{{-- <form class="delivery"> --}}
+  <label for="delivery-time">Время самовывоза
+    <select class="ChooseDelivery" id="delivery-time">
+      @foreach($time as $times)
+      <option value="{{$times->id}}" name="Time">{{$times->time}}</option>
+      @endforeach
+      
+    </select>
+  </label>
+</div>
+
+
+
+                <div  id="delivery-info" class="client_delivery" style="display: flex">
 
               <label class="Form_street">
                   <span>Улица</span>
@@ -130,8 +159,8 @@
                   <span>Дата доставки</span>
                   <input type="date" name="date2" />
               </label>  
-              <form class="delivery">
-                <label for="delivery-time">Время доставки / Самовывоза
+              {{-- <form class="delivery"> --}}
+                <label for="delivery-time">Время доставки
                   <select class="ChooseDelivery" id="delivery-time">
                     @foreach($time as $times)
                     <option value="{{$times->id}}" name="Time">{{$times->time}}</option>
@@ -140,7 +169,7 @@
                   </select>
                 </label>
                 
-              </form>
+              {{-- </form> --}}
               
               </div>
                 </div>
@@ -148,7 +177,6 @@
 
               {{--222--}}
               
-               {{-- t.UkYs6EaOKyFErY6I-eKMpUxlGHT1SV_jFKes0ZXbLYpJa5TYvek18bKsKSO0x_jXObo0s5HjbWLNq1zC1R4dCQ --}}
               <label class="comment">
                   <span>Комментарий</span>
                   <textarea name="comment" cols="50" rows="5"  placeholder="Ваши пожелания к заказу, поменять цвет покрытия, изменить надпись, добавить рисунок"></textarea>
@@ -177,21 +205,15 @@
               <button type="submit" class="btn btn-primary">Оформить заказ</button>
                 @endif
 
+                @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li style="color: red">{{ $error }}</li>
+                @endforeach
+                @endif
+
               </div>
-              
-              {{-- <form action="{{route('pay')}}" method="POST"> --}}
-                {{-- @csrf --}}
-                 {{-- <input type="hidden" name="TerminalKey" value="1722688466757DEMO">  Эта штука не так важно --}}
-                {{-- <label for="amount">Сумма (в рублях):</label>  --}}
-                {{--  <input type="number" name="amount" id="amount" min="1" required>      это получается полная сумма которая total            --}}
-                {{-- <input type="hidden" name="OrderId" value="123456"> --}}
-                {{-- <input type="hidden" name="Description" value="Описание платежа">  --}}
-                {{-- <input type="email" name="Email" value="user@example.com">
-                <input type="phone" name="Phone" value="89012345678">
-                <input type="hidden" name="Name" value="Имя покупателя">  --}}
-                {{-- <input type="hidden" name="frame" value="true"> <!-- Убедитесь, что значение true -->
-                <button type="submit">Оплатить</button> --}}
-            {{-- </form> --}}
           </div>
         </div>
       </div>

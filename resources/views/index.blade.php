@@ -5,12 +5,15 @@
         <div class="news">
             <div class="menu">
                 <div class="menu_dropdown">
-                    <a href="#">Всё</a>
+                  <div class ="oneblock"> 
+                   <a href="#">Всё</a>
                     <a href="#">День Рождение</a>
                     <a href="#">Свадьба</a>
                     <a href="#">С 8 марта</a>
                     <a href="#">С 23 февраля</a>
                     <a href="#">Для неё</a>
+                  </div>
+                  <div class="dvablock">
                     <a href="#">Для него</a>
                     <a href="#">Для Мамы</a>
                     <a href="#">Для Папы</a>
@@ -18,6 +21,7 @@
                     <a href="#">Детям</a>
                     <a href="#">Аниме</a>
                     <a href="#">Мемы</a>
+                  </div>
 
              </div>
 
@@ -29,13 +33,146 @@
             
         
            
-          
-            
-            
-            
+            {{-- <style>
+               
+        
+                .menu_dropdown {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Автоматическое создание колонок */
+                    gap: 15px; /* Пробел между элементами */
+                }
+        
+                .menu_dropdown a {
+                    background-color: #ffffff;
+                    border: 1px solid #ddd;
+                    border-radius: 5px;
+                    padding: 10px;
+                    text-align: center;
+                    text-decoration: none;
+                    color: #333;
+                    transition: background-color 0.3s, transform 0.3s;
+                }
+        
+                .menu_dropdown a:hover {
+                    background-color: #e90a5f; /* Цвет фона при наведении */
+                    color: #ffffff; /* Цвет текста при наведении */
+                    transform: scale(1.05); /* Увеличение при наведении */
+                }
+        
+                @media (max-width: 768px) {
+                    .menu_dropdown {
+                        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Уменьшение минимальной ширины колонок на экранах меньше 768px */
+                    }
+                }
+        
+                @media (max-width: 480px) {
+                    .menu_dropdown {
+                        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr)); /* Занимать 100% ширины на экранах меньше 480px */
+                    }
+                }
+            </style>
+             --}}
 
+
+              <style>
+     
+
+        .menu_dropdown {
             
-            
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap; /* Позволяет элементам переноситься на новую строку */
+            justify-content: space-between; /* Распределяет элементы по горизонтали */
+            /* gap: 15px; Пробел между элементами */
+        }
+        .oneblock{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+
+        }
+        .oneblock{
+            font-size: 9px;
+        }
+        .dvablock{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+
+        }
+        .dvablock a {
+            font-size: 9px;
+        }
+
+
+        .menu_dropdown a {
+            /* background-color: #ffffff; */
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            /* color: #333; */
+            transition: background-color 0.3s, transform 0.3s;
+            /* flex: 1 1 calc(30% - 10px); Занимает 30% ширины с учетом отступов */
+            min-width: 120px; /* Минимальная ширина ссылки */
+            max-width: 200px; Максимальная ширина ссылки
+            position: relative; /* Для абсолютного позиционирования псевдоэлементов */
+            overflow: hidden; /* Скрывает содержимое, выходящее за пределы */
+            flex: 1 1 auto; /* Элементы могут уменьшаться и расти */
+            min-width: 80px; /* Минимальная ширина ссылки */
+            max-width: 200px; /* Максимальная ширина ссылки */
+            white-space: nowrap; /* Запрет на перенос текста */
+            overflow: hidden; /* Скрывает переполнение */
+            text-overflow: ellipsis; /* Добавляет многоточие для длинного текста */
+        }
+
+        .menu_dropdown a:hover {
+            background-color:rgb(236, 103, 230); /* Цвет фона при наведении */
+            color: #ffffff; /* Цвет текста при наведении */
+             transform: scale(1.05); /* Увеличение при наведении */
+            border-radius: 30px;
+
+        }
+
+        /* Эффект случайного расположения */
+        .menu_dropdown a:nth-child(odd) {
+            /* transform: translateY(-5px); Сдвиг вверх для нечётных элементов */
+        }
+
+        .menu_dropdown a:nth-child(even) {
+            /* transform: translateY(5px); Сдвиг вниз для чётных элементов */
+        }
+
+        @media (max-width: 768px) {
+            .news{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 30px 15px;
+                box-sizing: border-box;
+                margin: 0 auto;
+                width: 100%;
+            }
+                
+            .menu_dropdown a {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                font-size: 9px; 
+               
+        }
+
+        @media (max-width: 480px) {
+            .menu_dropdown a {
+                min-width: 10px; /* Уменьшаем минимальную ширину на экранах меньше 480px */      
+                flex-wrap: wrap; 
+                padding: 2px;
+                 }
+        }
+            </style> 
+
         </div>
    
         <div class="modalwindow">
@@ -56,34 +193,38 @@
             
         
                 <div class="conteiner-right">
+                <form action="{{route('basketAdd','')}}" method="POST" > 
+                    @csrf 
+                    <input type="hidden" id="productId" name="productId"> 
                     <fieldset class="titlecake">
                         <legend>Начинка:</legend>
                         <div class="nachinka">
-                            <input type="radio" name="filling" value="Малина" required> Малина
-                            <input type="radio" name="filling" value="Клубника" required> Клубника
-                            <input type="radio" name="filling" value="Шоколад" required> Шоколад
+                                <select class="ChooseDelivery" id="delivery-time">
+                                    @foreach ($nachinka as $nachinkas)
+                                  <option value="{{$nachinkas->type_nachinka}}">{{$nachinkas->type_nachinka}}</option>
+                                  @endforeach
+                                  
+                                </select>
+
+
+
+                    
                             <!-- Добавьте другие начинки по желанию -->
                         </div>
                         <legend>Количество</legend>
                         <select size="1" id="quantity">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
+                            @for ($i = 1; $i <= 10; $i++)
+                                <option value="{{ $i }}">{{ $i }}</option>
+                            @endfor
                         </select>
                         <div class="infocakecardmodal">
                             <span>Цена: <span id="priceDisplay"></span></span> <!-- Отображение цены -->
                         </div>
               </fieldset>
-              <div class="button">
+                   <div class="button">
                         <button type="submit" name="click_button[]" value="" >Заказать</button>
                     </div>
+            </form>
             
 
                     
@@ -139,7 +280,7 @@
                     </div>
                     <div class="button">
                     <span name = "price"  value="{{ $bentos->price }}">{{ $bentos->price }}</span>
-                        <button type="submit"  id="modalInput" >В корзину</button>
+                        <button type="submit"  id="modalInput"  data-id="{{ $bentos->id }}">В корзину</button>
                     </div>
                 </div>
             </form>
@@ -178,7 +319,7 @@
                 </div>
                 <div class="button">
                 <span name = "price" value="{{ $myssovyis->price }}">{{ $myssovyis->price }}</span>
-                    <button type="submit"  id="modalInput" value="1" readonly>В корзину</button>
+                    <button type="submit"  id="modalInput" readonly>В корзину</button>
                 </div>
         
             </div>

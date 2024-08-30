@@ -80,94 +80,44 @@
                     <span class="City">Вологда</span>
                 </div>
                        
-                    
-                        
-                   
         
                 <div class="header_logo">
                     <img src="../img/kuromi.gif"/>
                 </div>
                 <div class="items">
+                    <div class ="basket">
                     <a href="{{route('basket')}}"  id="cart-link" > <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)">
                         <path d="m21.706 5.291-2.999-2.998A.996.996 0 0 0 18 2H6a.996.996 0 0 0-.707.293L2.294 5.291A.994.994 0 0 0 2 5.999V19c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V5.999a.994.994 0 0 0-.294-.708zM6.414 4h11.172l.999.999H5.415L6.414 4zM4 19V6.999h16L20.002 19H4z"></path>
                         <path d="M15 12H9v-2H7v4h10v-4h-2z"></path>
                     </svg> Корзина</a>
-                    @endif
-                
-        
-            {{-- <form class="obrabotka" action="remove_from_card.php"  method="post" enctype="multipart/form-data">
-                <div id="cart-modal" class="modal">
-                    <div class="modal-content" >
-                        <div class="modal-header">
-                          <span class="close">&times;</span>
-                          <h2>Корзина</h2>
-                        </div>
-                        <div class="modal-body">
-                        
+                    </div>
+                <div class="drop-menu">
 
-                        </div>
-                        <div class="info_users">
-                          <label class="form_users">
-                              <span>Ваше ФИО</span>
-                              <input type="text" name="name" placeholder="Как к вам можно обращаться?"  autocomplete="username" autofocus >
-                          </label>
-                          <label class="form_users" >
-                              <span>Контактный номер телефона</span>
-                              <input type="tel" name="number_phone" value ="+7" placeholder="+7 999 999 99 99"   autocomplete />
-                          </label>
-                          <label class="form_users">
-                              <span>Ваш Email</span>
-                              <input type="Email" name="Email" placeholder="Natale@mail.ru" autocomplete>
-                          </label>
-                          <label class="Form_street">
-                              <span>Ваш точный Адрес</span>
-                              <input type="text" name="street" placeholder="Ул. Трехсвятская, дом 34, подьезд 1,этаж 1, кв 1">
-                          </label>
-                          
-                          </label>
-                          <label class="date2">
-                              <span>Дата доставки</span>
-                              <input type="date" name="date2" />
-                          </label>  
-                          <div class="form_radio_btn">
-                          <input id="radio-1" type="radio" name="radio" value="1" checked>
-                          <label for="radio-1">Самовывоз</label>
-                          <input id="radio-2" type="radio" name="radio" value="2" checked>
-                          <label for="radio-2">Доставка</label>
-                        </div>
-                          
-                          
-                          <form class="delivery">
-                              <label for="delivery-time">Время доставки / Самовывоза</label>
-                              <select class="ChooseDelivery" id="delivery-time">
-                                <option value="09:00-11:00" name="delivery">09:00 - 11:00</option>
-                                <option value="11:00-13:00" name="delivery">11:00 - 13:00</option>
-                                <option value="13:00-15:00" name="delivery">13:00 - 15:00</option>
-                                <option value="15:00-17:00" name="delivery">15:00 - 17:00</option>
-                                <option value="15:00-17:00" name="delivery">17:00 - 19:00</option>
-                                <option value="15:00-17:00" name="delivery">19:00 - 21:00</option>
-                              </select>
-                            </form>
-                          <label class="comment">
-                              <span>Комментарий</span>
-                              <textarea name="comm" cols="50" rows="5"  placeholder="Ваши пожелания к заказу, поменять цвет покрытия, изменить надпись, добавить рисунок"></textarea>
-                          </label>
-                          <label class="fotka">
-                            <span>Хотите прикрепить свой рисунок?</span>
-                            <input type="file" value="Картинка" name="Cakefoto">
+                    <img id="openModal" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJjb2xvcjojMDAwMDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJoLWZ1bGwgdy1mdWxsIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgcng9IjMwIiBmaWxsPSJ0cmFuc3BhcmVudCIgc3Ryb2tlPSJ0cmFuc3BhcmVudCIgc3Ryb2tlLXdpZHRoPSIwIiBzdHJva2Utb3BhY2l0eT0iMTAwJSIgcGFpbnQtb3JkZXI9InN0cm9rZSI+PC9yZWN0Pjxzdmcgd2lkdGg9IjI1NnB4IiBoZWlnaHQ9IjI1NnB4IiB2aWV3Qm94PSIwIDAgMTYgMTYiIGZpbGw9IiMwMDAwMDAiIHg9IjEyOCIgeT0iMTI4IiByb2xlPSJpbWciIHN0eWxlPSJkaXNwbGF5OmlubGluZS1ibG9jazt2ZXJ0aWNhbC1hbGlnbjptaWRkbGUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0iYmxhY2siPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMS41IiBkPSJNMi43NSAxMi4yNWgxMC41bS0xMC41LTRoMTAuNW0tMTAuNS00aDEwLjUiPjwvcGF0aD48L2c+PC9zdmc+PC9zdmc+" alt="menu-hamburger" style="color:#000000" />
 
-                          </label>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="submit" class="btn btn-primary">Оформить заказ</button>
-                        </div>
-                      </div>
-            
-               
-              </div>
-            
-            </form> --}}
-            
+</head>
+<body>
+
+
+
+<div id="menu-modal" class="menu-modal">
+    <div class="menu-modal-header">
+        <span class="close" id="closeModal">&times;</span>
+        <h2>Меню</h2>
+    </div>
+    <div class="modal-content">
+        <a href="{{route('basket')}}"  id="cart-link">Корзина</a>
+        <a href ="">Контакты</a>
+        <a href = "{{route('delivery')}}">Оплата и Доставка</a>
+        <a href ="{{route('about')}}">О Нас</a>
+        <a href ="{{route('question')}}">FAQ</a>
+    </div>
+</div>
+
+                </div>
+                @endif
+
+    
 
             
             

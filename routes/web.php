@@ -30,7 +30,7 @@ use App\Http\Controllers\StatusController;
     Route::post('/basket/{id}',[OrderController::class,'addBasket'])->name('basketAdd');
     // Route::post('/basket',[OrderController::class,'setZakaz'])->name('setZakaz');
     Route::post('/create-payment', [PaymentController::class, 'createPayment'])->name('pay');
-    Route::get('/status',[StatusController::class,'Status'])->name('status');
+    Route::get('/status',[StatusController::class,'status'])->name('status');
 //});
 
 

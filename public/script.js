@@ -1,16 +1,16 @@
-  document.querySelector('.left-arrow').addEventListener('click', function() {
-    document.querySelector('.scroll-content').scrollBy({
-      left: -300, // Ширина прокрутки
-      behavior: 'smooth'
-    });
-  });
+  // document.querySelector('.left-arrow').addEventListener('click', function() {
+  //   document.querySelector('.scroll-content').scrollBy({
+  //     left: -300, // Ширина прокрутки
+  //     behavior: 'smooth'
+  //   });
+  // });
   
-  document.querySelector('.right-arrow').addEventListener('click', function() {
-    document.querySelector('.scroll-content').scrollBy({
-      left: 300, // Ширина прокрутки
-      behavior: 'smooth'
-    });
-  });
+  // document.querySelector('.right-arrow').addEventListener('click', function() {
+  //   document.querySelector('.scroll-content').scrollBy({
+  //     left: 300, // Ширина прокрутки
+  //     behavior: 'smooth'
+  //   });
+  // });
   // Перемещение элементов для создания бесконечного эффекта
 
 
@@ -66,7 +66,6 @@ productImages.forEach(image => {
       const cakeCard = image.closest('.cake_card');
       const title = cakeCard.querySelector('h2[name="cake_name"]').innerText;
       const price = cakeCard.querySelector('span[name="price"]').innerText;
-
       // Устанавливаем название и цену в модальном окне
       cakeTitle.innerText = title;
       priceDisplay.innerText = price; // Устанавливаем цену в модальном окне
@@ -85,3 +84,58 @@ window.addEventListener('click', (event) => {
   }
 });
 
+function updateText() {
+  // Получаем все радио-кнопки с именем "delivery"
+  const radios = document.getElementsByName('delivery');
+  let selectedValue;
+
+  // Ищем выбранную радио-кнопку
+  for (const radio of radios) {
+      if (radio.checked) {
+          selectedValue = radio.value; // Получаем значение выбранной радио-кнопки
+          break;
+      }
+  }
+
+  // Обновляем текст в контейнере
+  document.getElementById('selected-delivery').textContent = selectedValue;
+
+  // Управляем видимостью блоков
+  const deliveryInfo = document.getElementById('delivery-info');
+  const pickupInfo = document.getElementById('pickup-info');
+
+  if (selectedValue === 'Доставка') {
+      deliveryInfo.style.display = 'flex'; // Показываем блок с информацией о доставке
+      pickupInfo.style.display = 'none'; // Скрываем блок с информацией о самовывозе
+  } else if (selectedValue === 'Самовывоз') {
+      deliveryInfo.style.display = 'none'; // Скрываем блок с информацией о доставке
+      pickupInfo.style.display = 'flex'; // Показываем блок с информацией о самовывозе
+  }
+}
+
+// Вызываем updateText при загрузке страницы, чтобы установить начальное значение
+document.addEventListener('DOMContentLoaded', () => {
+  updateText();
+  document.querySelector('#delivery-info').style.display = 'flex'; // Показываем блок с информацией о доставке
+});
+
+
+// модальное слева направо 
+
+const modal = document.getElementById('menu-modal');
+const openModal = document.getElementById('openModal');
+const closeModal = document.getElementById('closeModal');
+
+openModal.onclick = function() {
+    modal.classList.add('active');
+}
+
+closeModal.onclick = function() {
+    modal.classList.remove('active');
+}
+
+window.onclick = function(event) {
+    if (event.target === modal) {
+        modal.classList.remove('active');
+    }
+}

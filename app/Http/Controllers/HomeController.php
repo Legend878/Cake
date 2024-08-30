@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Nachinka;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +24,8 @@ class HomeController extends Controller
     //  */
     public function index()
     {
+        $nachinka = Nachinka::get();
+        $product = Product::get();
         $bento = Product::where('category_id', 1)->get(); //бенто торт
         $myssovyi = Product::where('category_id', 2)->get(); //муссовый торт
         $classic = Product::where('category_id', 3)->get(); //классический торт
@@ -30,7 +33,7 @@ class HomeController extends Controller
 
         
         
-        return view('index',compact('bento','myssovyi','classic','capcake'));
+        return view('index',compact('bento','product','myssovyi','classic','capcake','nachinka'));
     }
     
 }

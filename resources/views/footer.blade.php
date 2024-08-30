@@ -19,7 +19,7 @@
             <li>ИНН 352525202603</li>
             <li>Адрес: г.Вологда, улица Конева, дом 20</li>
             <li>Телефон: +7 (911) 508-20-90</li>
-            <li>Сотрудничество/Предложения Email: Natalie@gmail.ru</li>
+            <li>Сотрудничество / Предложения Email: Natalie@gmail.ru</li>
           </ul>
         </div>
         <div class="col-md-4">
@@ -29,6 +29,9 @@
             <li><a href="{{route('status')}}">Телеграмм</a></li>
             <li><a href="#">What's up</a></li>
           </ul>
+        </div>
+        <div>
+          <span style="color:white"> &copy; {{ date('Y') }} - Все права защищены</span>
         </div>
       
     </div>

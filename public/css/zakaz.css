@@ -234,13 +234,16 @@
   flex-direction: column;
   gap: 20px;
   /* width: 900px; */
-  width: auto;
+  /* width: auto; */
+  width: 100%;
 }
 .trubleblock{
   display: flex;
   flex-direction: row;
   gap: 20px;
-  width: auto;
+  /* width: auto; */
+  width: 100%;
+
 }
 
 .block_body{

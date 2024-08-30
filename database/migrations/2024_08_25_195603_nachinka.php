@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_fabric', function (Blueprint $table) {
+        
+        Schema::create('nachinka', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('order_id');
-            $table->timestamp('created_at');
+            $table->string('type_nachinka', 30)->nullable(false);
 
-            $table->foreign('order_id')->references('id')->on('order_users');
         });
     }
 
@@ -25,7 +24,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_fabric');
+        Schema::dropIfExists('nachinka');
 
     }
 };
