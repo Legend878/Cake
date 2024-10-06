@@ -5,80 +5,80 @@
             <div class="question">
                 <h1>Часто задаваемые вопросы</h1>
             </div>
-            <div class="question_container">
-                <div class="question_container_dropdown">
-                    <a href="#">Как сделать заказ? <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAANZJREFUSEvt081pAlEUhuFHsIcEVBJMmggi9mEDggXYRlZu3KWUECRN+I+C6SGIHBhBYmbmuhBczF0O33zvOe/Mrbnxqd24XwUoNVwpun9FI3zgJ2fUB/TxnrdK0UceYow5etj9KWngEy8YYPIfpAjwiC+8Yo3OGSTKp3jCDF3srwVEPiDfeD6DxPNT+QpveeURTLkHzUxFG0vU0cIiU7ct+pVSAPF+QEJXbBInJg8theWpG5wGDEjo+k0tvxYQ+djggE3pDcsCqYpS+y5yFaBUXaWoVNERTkIfGckggW4AAAAASUVORK5CYII="/></a>
-                    <div class="question_container_dropdown_double">
-                        <div class="question_container_dropdown_double-text">
-                            <span>хз</span>
-                        </div>
-                        
+            <ul class="list">
+                <li class="faq">
+                    <div class="question">
+                        Как сделать заказ?
+                        <span class="icon-main">
+                            <i class="fa-solid fa-plus"></i>
+                        </span>
                     </div>
-                </div>
-                <div class="question_container_dropdown">
-                    <a href="#">Какая доставка у вас есть? <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAANZJREFUSEvt081pAlEUhuFHsIcEVBJMmggi9mEDggXYRlZu3KWUECRN+I+C6SGIHBhBYmbmuhBczF0O33zvOe/Mrbnxqd24XwUoNVwpun9FI3zgJ2fUB/TxnrdK0UceYow5etj9KWngEy8YYPIfpAjwiC+8Yo3OGSTKp3jCDF3srwVEPiDfeD6DxPNT+QpveeURTLkHzUxFG0vU0cIiU7ct+pVSAPF+QEJXbBInJg8theWpG5wGDEjo+k0tvxYQ+djggE3pDcsCqYpS+y5yFaBUXaWoVNERTkIfGckggW4AAAAASUVORK5CYII="/> </a>
-                    <div class="question_container_dropdown_double">
-                        <div class="question_container_dropdown_double-text">
-                            <span>Мы предалагаем доставку по услугам "ЯндексТакси", мы доставим десерт по указанному адресу или вручим его от Вашего имени в подарок. Также у нас есть самовывоз</span>
-                        </div>
+                    <div class="answer">
+                        Выберите понравившийся товар из каталога и добавьте его в корзину. В корзине укажите ваши данные, а также выберите способ доставки и заполните оставшиеся поля. Оплатите товар удобным для вас способом и ожидайте статуса заказа на эл.почту, также мы можем вам позвонить для уточнения заказа.                    
                     </div>
-                </div>
-                <div class="question_container_dropdown">
-                    <a href="#">Можно ли сделать торт по моему эскизу, описанию или картинке?<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAANZJREFUSEvt081pAlEUhuFHsIcEVBJMmggi9mEDggXYRlZu3KWUECRN+I+C6SGIHBhBYmbmuhBczF0O33zvOe/Mrbnxqd24XwUoNVwpun9FI3zgJ2fUB/TxnrdK0UceYow5etj9KWngEy8YYPIfpAjwiC+8Yo3OGSTKp3jCDF3srwVEPiDfeD6DxPNT+QpveeURTLkHzUxFG0vU0cIiU7ct+pVSAPF+QEJXbBInJg8theWpG5wGDEjo+k0tvxYQ+djggE3pDcsCqYpS+y5yFaBUXaWoVNERTkIfGckggW4AAAAASUVORK5CYII="/> </a>
-                    <div class="question_container_dropdown_double">
-                        <div class="question_container_dropdown_double-text">
-                            <span>Да, можно, детали данного изделия и внешний вид будут обговоренны с Вами</span>
-                        </div>
+                </li>
+                <li class="faq">
+                    <div class="question">
+                        Какая доставка у вас есть? 
+                        <span class="icon-main">
+                            <i class="fa-solid fa-plus"></i>
+                        </span>
                     </div>
-                </div>
-                <div class="question_container_dropdown">
-                    <a href="#">Какие сроки годности у десертов? <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAANZJREFUSEvt081pAlEUhuFHsIcEVBJMmggi9mEDggXYRlZu3KWUECRN+I+C6SGIHBhBYmbmuhBczF0O33zvOe/Mrbnxqd24XwUoNVwpun9FI3zgJ2fUB/TxnrdK0UceYow5etj9KWngEy8YYPIfpAjwiC+8Yo3OGSTKp3jCDF3srwVEPiDfeD6DxPNT+QpveeURTLkHzUxFG0vU0cIiU7ct+pVSAPF+QEJXbBInJg8theWpG5wGDEjo+k0tvxYQ+djggE3pDcsCqYpS+y5yFaBUXaWoVNERTkIfGckggW4AAAAASUVORK5CYII="/></a>
-                    <div class="question_container_dropdown_double">
-                        <div class="question_container_dropdown_double-text">
-                            <span>Срок годности наших десертов 2-3 дня в холодильнике ( до 72 часов ), поскокльку в изготовлении используются только натуральные ингридиенты, без консервантов</span>
-                        </div>
+                    <div class="answer">
+                        Мы предлагаем выбор, который будет вам удобен для получения заказа. 
+                        Доставка "ЯндексТакси" доставит десерт по указанному адресу или вручит его от Вашего имени в подарок. 
+                        Также вы сами можете забрать десерт из пунка выдачи, укажите об этом в заказе.
                     </div>
-                </div>
-                <div class="question_container_dropdown">
-                    <a href="#">Для чего нужна предоплата?<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAANZJREFUSEvt081pAlEUhuFHsIcEVBJMmggi9mEDggXYRlZu3KWUECRN+I+C6SGIHBhBYmbmuhBczF0O33zvOe/Mrbnxqd24XwUoNVwpun9FI3zgJ2fUB/TxnrdK0UceYow5etj9KWngEy8YYPIfpAjwiC+8Yo3OGSTKp3jCDF3srwVEPiDfeD6DxPNT+QpveeURTLkHzUxFG0vU0cIiU7ct+pVSAPF+QEJXbBInJg8theWpG5wGDEjo+k0tvxYQ+djggE3pDcsCqYpS+y5yFaBUXaWoVNERTkIfGckggW4AAAAASUVORK5CYII="/> </a>
-                    <div class="question_container_dropdown_double">
-                        <div class="question_container_dropdown_double-text">
-                            <span>Внесение предоплаты - это гарантия того, что клиент заказывает десерт осознанно и не собирается отказываться от него в последний момент</span>
-                        </div>
+                </li>
+                <li class="faq">
+                    <div class="question">
+                        Можно ли сделать торт по моему эскизу, описанию или картинке?
+                        <span class="icon-main">
+                            <i class="fa-solid fa-plus"></i>
+                        </span>
                     </div>
-                </div>
-                <div class="question_container_dropdown">
-                    <a href="#">Какой минимальный вес торта? <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAANZJREFUSEvt081pAlEUhuFHsIcEVBJMmggi9mEDggXYRlZu3KWUECRN+I+C6SGIHBhBYmbmuhBczF0O33zvOe/Mrbnxqd24XwUoNVwpun9FI3zgJ2fUB/TxnrdK0UceYow5etj9KWngEy8YYPIfpAjwiC+8Yo3OGSTKp3jCDF3srwVEPiDfeD6DxPNT+QpveeURTLkHzUxFG0vU0cIiU7ct+pVSAPF+QEJXbBInJg8theWpG5wGDEjo+k0tvxYQ+djggE3pDcsCqYpS+y5yFaBUXaWoVNERTkIfGckggW4AAAAASUVORK5CYII="/></a>
-                    <div class="question_container_dropdown_double">
-                        <div class="question_container_dropdown_double-text">
-                            <span>Минимальный вес торта - 1,5 кг</span>
-                        </div>
+                    <div class="answer">
+                        Да, можно. Внешний вид данного заказа будет обговорен с вами во избежание нарушений правообладания.
                     </div>
-                </div>
-                <div class="question_container_dropdown">
-                    <a href="#">Есть ли у вас скидки?<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAANZJREFUSEvt081pAlEUhuFHsIcEVBJMmggi9mEDggXYRlZu3KWUECRN+I+C6SGIHBhBYmbmuhBczF0O33zvOe/Mrbnxqd24XwUoNVwpun9FI3zgJ2fUB/TxnrdK0UceYow5etj9KWngEy8YYPIfpAjwiC+8Yo3OGSTKp3jCDF3srwVEPiDfeD6DxPNT+QpveeURTLkHzUxFG0vU0cIiU7ct+pVSAPF+QEJXbBInJg8theWpG5wGDEjo+k0tvxYQ+djggE3pDcsCqYpS+y5yFaBUXaWoVNERTkIfGckggW4AAAAASUVORK5CYII="/> </a>
-                    <div class="question_container_dropdown_double">
-                        <div class="question_container_dropdown_double-text">
-                            <span>Данная система пока не разрабатывалась, а будет ли потом , кто знает :)</span>
-                        </div>
+                </li>
+                <li class="faq">
+                    <div class="question">
+                        Какие сроки годности у десертов? 
+                        <span class="icon-main">
+                            <i class="fa-solid fa-plus"></i>
+                        </span>
                     </div>
-                </div>
-                <div class="question_container_dropdown">
-                    <a href="#">Можно ли заказать торт за один день? <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAANZJREFUSEvt081pAlEUhuFHsIcEVBJMmggi9mEDggXYRlZu3KWUECRN+I+C6SGIHBhBYmbmuhBczF0O33zvOe/Mrbnxqd24XwUoNVwpun9FI3zgJ2fUB/TxnrdK0UceYow5etj9KWngEy8YYPIfpAjwiC+8Yo3OGSTKp3jCDF3srwVEPiDfeD6DxPNT+QpveeURTLkHzUxFG0vU0cIiU7ct+pVSAPF+QEJXbBInJg8theWpG5wGDEjo+k0tvxYQ+djggE3pDcsCqYpS+y5yFaBUXaWoVNERTkIfGckggW4AAAAASUVORK5CYII="/> </a>
-                    <div class="question_container_dropdown_double">
-                        <div class="question_container_dropdown_double-text">
-                            <span>хз</span>
-                        </div>
+                    <div class="answer">
+                        Срок годности наших десертов составляет 2-3 дня в холодильнике (до 72 часов), поскольку в изготовлении используются только натуральные ингредиенты, без консервантов.                    </div>
+                </li>
+                <li class="faq">
+                    <div class="question">
+                        Как работает Предоплата и для чего она нужна?
+                        <span class="icon-main">
+                            <i class="fa-solid fa-plus"></i>
+                        </span>
                     </div>
-                </div>
-               
-            </div>
-
-        </div>
-
-       
+                    <div class="answer">
+                        Внесение предоплаты — это гарантия того, что клиент заказывает десерт осознанно. К тому же, пока кондитер не подтвердит или отклонит ваш заказ, ваши денежные средства не будут списаны.
+                        О статусе вашего заказа вы будете проинформированы на вашу электронную почту. Также вы можете написать в Telegram, либо позвонить на указанный номер телефона.
+                    </div>
+                </li>
+                <li class="faq">
+                    <div class="question">
+                        Если мой заказ отклонили, когда вернутся денежные средства? 
+                        <span class="icon-main">
+                            <i class="fa-solid fa-plus"></i>
+                        </span>
+                    </div>
+                    <div class="answer">
+                        Денежные средства обычно возвращаются в течение 7 дней, всё зависит от вашего банка.                    </div>
+                </li>
+            </ul>
     </main>
+
     
+
+
 </body>
 @include ('footer')
 

@@ -34,6 +34,22 @@
                 </select> 
                 
             </leabel>
+
+            <label class="CreateFormChoose">
+                <span>Тэги</span>
+                <p>можно выбрать до 2-ух тэгов, причем , что тэг "Всё" отображает все товары!</p>
+                <select class="ChooseProduct" name="tags_one_id"> 
+                    @foreach($tags as $tag)
+                    <option value="{{ $tag->id }}">{{ $tag->type_tags }}</option>
+                @endforeach
+                </select> 
+                <select class="ChooseProduct" name="tags_two_id"> 
+                    @foreach($tags as $tag)
+                    <option value="{{ $tag->id }}">{{ $tag->type_tags }}</option>
+                @endforeach
+                </select> 
+                
+            </leabel>
             @if ($errors->any())
         <div class="alert alert-danger">
             <ul>

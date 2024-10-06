@@ -14,7 +14,6 @@
                     <h2>Корзина</h2>
                   </div>
                   <div class="modal-body">
-                    <!-- Содержимое корзины -->
                   </div>
                   <div class="modal-footer">
                     <button class="btn btn-primary">Оформить заказ</button>

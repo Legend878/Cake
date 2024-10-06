@@ -16,11 +16,10 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('First_name',30)->nullable(false);
             $table->string('last_name', 35)->nullable(false);
-            $table->string('otchestvo', 35)->nullable();
-            $table->ipAddress('email', 90)->unique()->nullable(false);
+            $table->string('email', 120)->unique()->nullable(false);
 
             $table->string('number_phone', 13)->unique()->nullable(false);
-            $table->string('address', 255)->nullable(false);
+           
             $table->timestamps();
         });
 
@@ -42,5 +41,7 @@ return new class extends Migration
     {
        
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('users');
+
     }
 };

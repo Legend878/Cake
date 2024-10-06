@@ -12,18 +12,12 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 6%;
+    padding: 20px 4%;
     box-shadow: -6px -6px 20px 0;
     margin: 0 auto;
     width: 100%;
-    background-color: rgb(236, 103, 230);
-
-   
-  
-    
-    
-    
-
+    background-color: rgb(241 154 239);
+    line-height: 1.6;
 }
 .header_links{
     font-size: 18px;
@@ -103,8 +97,7 @@ header {
     font-size: 17px;
     background: white;
     border-radius: 8px;
-    padding: 8px;
-    gap:5px;
+    padding: 5px;
     display:flex;
     
 }
@@ -118,7 +111,7 @@ header {
 
 .header_links img{
     width: 15px;
-    height: 15px;
+    /* height: 15px; */
     flex-direction: row;
 
 }
@@ -131,10 +124,13 @@ header {
 .work{
 font-size: 14px;
 color: grey;
-padding-left: 60px
+display: flex;
+justify-content: end;
 }
 .phone{
     display: flex;
+    justify-content: end;
+    flex-wrap: nowrap;
     
 }
 .phone svg{
@@ -153,6 +149,22 @@ padding-left: 60px
     position: relative;
     border-radius: 8px;
     transition: 0.2s linear;
+}
+
+.menuinfo{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    padding-right: 30px;
+}
+
+.menunumber{
+    display: flex;
+}
+.menuwork{
+    font-size: 14px;
+    color: grey;
+    padding-left: 60px;
 }
 .items a{
     color: black;
@@ -184,7 +196,7 @@ padding-left: 60px
 .drop-menu img{
     display: none;
     width: 100%;
-    max-width: 60px;
+    max-width: 35px;
 }
 
 body {
@@ -221,6 +233,9 @@ body {
 
 .modal-content {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .close {
@@ -237,4 +252,23 @@ body {
     text-decoration: none;
     color: #007BFF;
     font-size: 18px;
+}
+
+.logout button{
+    width: 100%;
+    padding: 5px 0;
+    font-size: 14px;
+    align-items: center;
+    border-radius: 8px;
+    border: none;
+    background-color: rgb(201, 89, 245);
+    transition: .2s linear;
+    cursor: pointer;
+}
+
+.modal-content-menu{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }

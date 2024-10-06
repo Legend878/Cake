@@ -5,10 +5,12 @@
     scroll-behavior: smooth;
     list-style: none;
     text-decoration: none;
-    font-family: "Noto Serif", serif;
-  font-optical-sizing: auto;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+
  
 }
+
 
 
 a {
@@ -35,23 +37,42 @@ a {
 }
 @media only screen and (min-width: 601px) and (max-width: 1024px) {
     
+    .logout{
+        display: none !important;
+    }
 
+    .logout-menu button{
+        display: flex !important;
+        width: 100%;
+        padding: 5px 0;
+        font-size: 14px;
+        align-items: center;
+        border-radius: 8px;
+        border: none;
+        background-color: rgb(201, 89, 245);
+        transition: .2s linear;
+        cursor: pointer;
+        justify-content: center
+
+
+    }
+    
     .sandwich svg{
       display: flex !important;
     }
 
     .navigator svg , .City{
-        display:none;
+        display:none !important;
     }
     .header_links a{
-        display:none;
+        display:none !important;
     }
 
     .header_logo img{
-        display: none;
+        display: none !important;
     }
     .anime img{
-        display: none;
+        display: none !important;
     }
     .info{
         display: none !important;
@@ -62,12 +83,186 @@ a {
     .doubleblock{
         flex-direction: column !important;
     }
-     
+    .drop-menu img{
+        display: flex !important;
+    }
+    .basket{
+        display: none !important;
+    }
+    .news{
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 30px 15px !important;
+        box-sizing: border-box !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+    }
+    .footer-container{
+        flex-direction: column !important;
+        
+    }
+    .catalog-lenta{
+        grid-template-columns: repeat(3, 250px) !important;
+    }
+
+    .conteiner-center{
+        flex-direction: row !important;
+    }
+    .list-modal{
+        flex-direction: column !important;
+    }
+
+    .modalimage{
+        width: 200px !important;
+    }
+    .modal-footer{
+        width: auto !important;
+        height: auto !important;
+    }
+
 
 }
-@media only screen and (max-width: 600px){
+@media only screen and (min-width:401px) and (max-width: 600px){
 
+    .logout{
+        display: none !important;
+    }
+
+    .logout-menu button{
+        display: flex !important;
+        width: 100%;
+        padding: 5px 0;
+        font-size: 14px;
+        align-items: center;
+        border-radius: 8px;
+        border: none;
+        background-color: rgb(201, 89, 245);
+        transition: .2s linear;
+        cursor: pointer;
+        justify-content: center
+
+
+    }
+    .header_links a{
+        display: none !important;
+    }
+    .header_logo img{
+        display: none;
+    }
+    .navigator svg, .City{
+        display:none;
+    }
+    .anime img{
+        display: none;
+    }
+
+    .info, .phone, .work{
+        display: none !important;
+    }
+
+    /* .footer-container{
+        display: none !important;
+    } */
+    .footer-row{
+        flex-direction: column !important;
+    }
+    .trubleblock{
+        flex-direction: column !important;
+        width: auto !important;
+    }
+    .doubleblock{
+        flex-direction: column !important;
+    }
+    .block_client{
+        flex-direction: column !important;
+    }
+   
+    .basket{
+        display: none !important;
+    }
+    .drop-menu img{
+        display: flex !important;
+    }
     
+    .news{
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 20px 45px !important;
+        box-sizing: border-box !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+    }
+    .oneblock,.form-oneblock{
+        display: grid !important;
+/* Три колонки */
+grid-template-columns: auto auto auto !important;
+/* Два ряда */
+grid-template-rows: auto auto !important;
+/* Автоматическое размещение в ряд */
+grid-auto-flow: row !important;
+/* Отступы между ячейками */
+/* gap: 20px; */
+    }
+    .dvablock,.form-dvablock{
+        display: grid !important;
+/* Три колонки */
+grid-template-columns: auto auto auto !important;
+/* Два ряда */
+grid-template-rows: auto auto !important;
+/* Автоматическое размещение в ряд */
+grid-auto-flow: row !important;
+/* Отступы между ячейками */
+/* gap: 20px; */
+    }
+        
+    .menu_dropdown button {
+        display: flex !important;
+        flex-direction: column !important;
+        flex-wrap: nowrap !important;
+        justify-content: space-between !important;
+        align-items: center;
+       
+}
+    .menu_dropdown button {
+        min-width: 10px !important; /* Уменьшаем минимальную ширину на экранах меньше 480px */      
+        flex-wrap: wrap !important;
+        /* padding: 2px; */
+         }
+         .footer-container{
+            flex-direction: column !important;
+        }
+        .catalog-lenta{
+            grid-template-columns: repeat(2,190px) !important;
+        }
+        .conteiner-center{
+            flex-direction: column !important;
+        }
+        .list-modal{
+            flex-direction: column !important;
+        }
+
+        .modalimage{
+            width: 290px !important;
+        }
+        .modal-footer{
+            width: auto !important;
+            height: auto !important;
+        }
+
+
+
+}
+    
+  
+
+
+    @media only screen and (max-width: 480px) {
+
+    .footer-container{
+        flex-direction: column !important;
+    }
     .header_links a{
         display: none;
     }
@@ -84,52 +279,118 @@ a {
     .info, .phone, .work{
         display: none !important;
     }
-
-    .footer-container{
-        display: none !important;
-    }
-    
     .trubleblock{
         flex-direction: column !important;
-        width: 300px !important;
+        width: auto !important;
     }
     .doubleblock{
         flex-direction: column !important;
-        width: 300px !important;
     }
     .block_client{
         flex-direction: column !important;
     }
-    .info_users input, .span {
-       
-        width: auto !important;
+    .info_users input, .span{
+        width: 250px !important;
     }
     .basket{
         display: none !important;
     }
+    .footer-row{
+        flex-direction: column !important;
+    }
     .drop-menu img{
         display: flex !important;
     }
-
-    /* .menu_dropdown{
-        display: flex;
-            flex-wrap: wrap !important; /* Позволяет элементам переноситься на новую строку */
-           /*  gap: 15px; /* Пробел между элементами */
-        /* flex-direction: row !important;
-        background:none !important; */
-
-  /*   }
-    /* 
-  /*  .menu_dropdown a{
-        flex: 1 1 100%; /* Занимает 100% ширины на экранах меньше 480px *//* background:rgb(212, 207, 207) !important;
-     /*    border: 1px solid #ddd;
-        border-radius: 5px;
-        padding: 10px;
-        text-align: center;
-         text-decoration: none;
-        color: #333;
-        transition: background-color 0.3s, transform 0.3s;
-
-    } */
-    
+    .news{
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 20px 0px !important;
+        box-sizing: border-box !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+    }
+    .oneblock, .form-oneblock{
+        display: grid !important;
+/* Три колонки */
+grid-template-columns: auto auto auto !important;
+/* Два ряда */
+grid-template-rows: auto auto !important;
+/* Автоматическое размещение в ряд */
+grid-auto-flow: row !important;
+/* Отступы между ячейками */
+/* gap: 20px; */
+    }
+    .dvablock, .form-dvablock{
+        display: grid !important;
+/* Три колонки */
+grid-template-columns: auto auto auto !important;
+/* Два ряда */
+grid-template-rows: auto auto !important;
+/* Автоматическое размещение в ряд */
+grid-auto-flow: row !important;
+/* Отступы между ячейками */
+/* gap: 20px; */
+    }
+        
+    .menu_dropdown button{
+        display: flex !important;
+        flex-direction: column !important;
+        flex-wrap: nowrap !important;
+        justify-content: space-between !important;
+       align-items: center;
 }
+    .menu_dropdown button {
+        min-width: 10px !important; /* Уменьшаем минимальную ширину на экранах меньше 480px */      
+        flex-wrap: wrap !important;
+        padding: 10px !important;
+        font-size: 12px;
+        }
+        .modal-footer{
+            width: auto !important;
+            height: auto !important;
+        }
+
+        .catalog-lenta{
+            grid-template-columns: repeat(2,160px) !important;
+        }
+        
+
+        .info_cake h2 {
+            margin-bottom: 0px !important;
+        }
+
+        .conteiner-center{
+            flex-direction: column !important;
+        }
+        .list-modal{
+            flex-direction: column !important;
+        }
+
+        .modalimage{
+            width: 200px !important;
+        }
+        .logout{
+            display: none !important;
+        }
+    
+        .logout-menu button{
+            display: flex !important;
+            width: 100%;
+            padding: 5px 0;
+            font-size: 14px;
+            align-items: center;
+            border-radius: 8px;
+            border: none;
+            background-color: rgb(201, 89, 245);
+            transition: .2s linear;
+            cursor: pointer;
+            justify-content: center
+
+
+            
+        }
+        
+
+    }
+    

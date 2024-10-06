@@ -1,0 +1,21 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.td{
+    padding: 8px;
+    text-align: center;
+}
+th{
+    padding: 8px;
+    text-align: center;
+}
+.available {
+    background-color: #c8e6c9; /* Зеленый для доступных дат */
+}
+.unavailable {
+    background-color: #ffcdd2; /* Красный для недоступных дат */
+}
+.weekend {
+    background-color: #f0f0f0; /* Цвет для выходных */
+}

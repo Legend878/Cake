@@ -1,39 +1,44 @@
-<footer>
-<a href="index.php" class="logo">
-            <img src="img/logotype6.png">
-		</a>
+
+  <footer>
+    <div class="footer-row">
+    <a href="index.php" class="logo">
+        <img src="{{asset('img/logotype6.png')}}">
+    </a>
     <div class="footer-container">
-      
-        <div class="col-md-4">
-          <h4>О магазине</h4>
-          <p>
-            Мы интернет-магазин, который предлагает широкий выбор товаров по доступным ценам.
-            Мы работаем напрямую с производителями, чтобы гарантировать высокое качество продукции.
-          </p>
+        <div class="col">
+
+           
         </div>
-        <div class="col-md-4">
-          <h4>Контакты</h4>
-          <ul>
-            <li>ИП Соколова Наталья Юрьевна</li>
-            <li>ОГРН/ОГРНИП 324350000034591</li>
-            <li>ИНН 352525202603</li>
-            <li>Адрес: г.Вологда, улица Конева, дом 20</li>
-            <li>Телефон: +7 (911) 508-20-90</li>
-            <li>Сотрудничество / Предложения Email: Natalie@gmail.ru</li>
-          </ul>
+        <div class="col">
+            <h4>Контакты</h4>
+            <ul>
+                <li>ИП Соколова Наталья Юрьевна</li>
+                <li>ОГРН/ОГРНИП 324350000034591</li>
+                <li>ИНН 352525202603</li>
+                <li>Адрес: г.Вологда, улица Конева, дом 20</li>
+                <li>Телефон: +7 (911) 508-20-90</li>
+                <li>Сотрудничество / Предложения Email: <a href="mailto:NatalieCakeWork@yandex.ru">NatalieCakeWork@yandex.ru</a></li>
+            </ul>
         </div>
-        <div class="col-md-4">
-          <h4>Социальные сети</h4>
-          <ul>
-            <li><a href="{{route('login')}}">Администрации</a></li>
-            <li><a href="{{route('status')}}">Телеграмм</a></li>
-            <li><a href="#">What's up</a></li>
-          </ul>
+        <div class="col">
+            <h4>Социальные сети</h4>
+            <ul>
+                <li><a href="{{route('status')}}">Телеграмм</a></li>
+                <li><a href="#">WhatsApp</a></li>
+            </ul>
         </div>
-        <div>
-          <span style="color:white"> &copy; {{ date('Y') }} - Все права защищены</span>
+
+        <div class="col">
+          <h4><a href="{{route('login')}}">Администрация</a></h4>
+
         </div>
-      
+       
     </div>
-  </footer>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; {{ date('Y') }} - Все права защищены</span>
+  </div>
+ 
+</footer>
+
   </html>

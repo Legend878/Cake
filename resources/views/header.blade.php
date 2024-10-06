@@ -4,37 +4,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/style.css')}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <script src="script.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <script src="{{asset('script.js')}}" defer></script>
+    
+    <meta name="description" content="NATALIE — онлайн-кондитерская с доставкой десертов. ◾ Выгодные цены ◾ Свежие продукты ◾ Уникальность ◾">
 
-
-    <title></title>
+    <title> NATALIE </title>
 </head>
 <body>
     <header>
 
         <a href="{{route('home')}}" class="logo">
-            <img src="../img/logotype7.png">
+            <img src="{{asset('img/logotype7.png')}}">
 		</a>
+
+        @if(auth()->guard('admin')->check()) 
+        <nav class="header_links">
+            <a href="{{ route('Create') }}">Создание торта</a>
+            <a href="{{route('confirmed')}}" >В Работе</a>
+            <a href="{{route('admin')}}">Мои заказы</a>
+            <a href="{{route('allproductAdmin')}}">Все товары</a>
+            <a href="#">Статистика</a>
+            <form class="logout" action="{{ route('logout') }}" method="POST" style="display: inline;">
+                @csrf
+                <button  type="submit">Выход</button>
+            </form>
+        </nav>
+
+
+        <div class="drop-menu">
+
+            <img id="openModal" src="{{asset('img/hamburger-menu.png')}}"/>
+
+                
+<div id="menu-modal" class="menu-modal">
+<div class="menu-modal-header">
+    <span class="close" id="closeModal">&times;</span>
+    <h2>Меню</h2>
+</div>
+
+<div class="modal-content-menu">
+    <a href="{{ route('Create') }}">Создание торта</a>
+    <a href="{{route('admin')}}">Мои заказы</a>
+    <a href="{{route('confirmed')}}" >В Работе</a>
+    <a href="{{route('allproductAdmin')}}">Все товары</a>
+    <a href="#">Статистика</a>
+    <form class="logout-menu" action="{{ route('logout') }}" method="POST" style="display: inline;">
+        @csrf
+        <button  type="submit">Выход</button>
+    </form>
+</div>
+</div>
+@else
     
                 <nav class="header_links">
-                    @if(auth()->guard('admin')->check()) 
-                    <a href="{{ route('Create') }}">Создание торта</a>
-                    <a href="{{route('admin')}}">Мои заказы</a>
-                    <a href="#">Все товары</a>
-                    <a href="#">Статистика</a>
-                    <form class="button" action="{{ route('logout') }}" method="POST" style="display: inline;">
-                        @csrf
-                        <button  type="submit">Выход</button>
-                    </form>
-                    @else
                     <a href ="{{route('home')}}">Главная</a>
                     <div class="header_links_dropdown">
-                        <a href ="{{route('catalog')}}">Каталог <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAANZJREFUSEvt081pAlEUhuFHsIcEVBJMmggi9mEDggXYRlZu3KWUECRN+I+C6SGIHBhBYmbmuhBczF0O33zvOe/Mrbnxqd24XwUoNVwpun9FI3zgJ2fUB/TxnrdK0UceYow5etj9KWngEy8YYPIfpAjwiC+8Yo3OGSTKp3jCDF3srwVEPiDfeD6DxPNT+QpveeURTLkHzUxFG0vU0cIiU7ct+pVSAPF+QEJXbBInJg8theWpG5wGDEjo+k0tvxYQ+djggE3pDcsCqYpS+y5yFaBUXaWoVNERTkIfGckggW4AAAAASUVORK5CYII="/> </a>
+                        <a href ="{{route('catalog')}}">Каталог</a>
                         <div class="header_links_dropdown_items">
                             <div class="header_links_dropdown_items-con">
                                 <a href ="#">Бенто Торты</a>
@@ -51,17 +83,10 @@
                     <a href ="{{route('question')}}">FAQ</a>
                     
                 </nav>
+              
                 
                     <div class="info">
                         <div class="phone">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                             width="20"
-                              height="20"
-                               viewBox="0 0 24 24"
-                                style="fill: rgba(0, 0, 0, 1)">
-                                <path d="M20 10.999h2C22 5.869 18.127 2 12.99 2v2C17.052 4 20 6.943 20 10.999z"></path>
-                                <path d="M13 8c2.103 0 3 .897 3 3h2c0-3.225-1.775-5-5-5v2zm3.422 5.443a1.001 1.001 0 0 0-1.391.043l-2.393 2.461c-.576-.11-1.734-.471-2.926-1.66-1.192-1.193-1.553-2.354-1.66-2.926l2.459-2.394a1 1 0 0 0 .043-1.391L6.859 3.513a1 1 0 0 0-1.391-.087l-2.17 1.861a1 1 0 0 0-.29.649c-.015.25-.301 6.172 4.291 10.766C11.305 20.707 16.323 21 17.705 21c.202 0 .326-.006.359-.008a.992.992 0 0 0 .648-.291l1.86-2.171a1 1 0 0 0-.086-1.391l-4.064-3.696z"></path>
-                            </svg>
                             <span>+7(911) 508-20-90</span>
                         </div>
                     
@@ -82,7 +107,8 @@
                        
         
                 <div class="header_logo">
-                    <img src="../img/kuromi.gif"/>
+                    <img src="{{asset('img/kuromi.gif')}}">
+
                 </div>
                 <div class="items">
                     <div class ="basket">
@@ -91,35 +117,53 @@
                         <path d="M15 12H9v-2H7v4h10v-4h-2z"></path>
                     </svg> Корзина</a>
                     </div>
+                </div>
+
+
                 <div class="drop-menu">
 
-                    <img id="openModal" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJjb2xvcjojMDAwMDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJoLWZ1bGwgdy1mdWxsIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgcng9IjMwIiBmaWxsPSJ0cmFuc3BhcmVudCIgc3Ryb2tlPSJ0cmFuc3BhcmVudCIgc3Ryb2tlLXdpZHRoPSIwIiBzdHJva2Utb3BhY2l0eT0iMTAwJSIgcGFpbnQtb3JkZXI9InN0cm9rZSI+PC9yZWN0Pjxzdmcgd2lkdGg9IjI1NnB4IiBoZWlnaHQ9IjI1NnB4IiB2aWV3Qm94PSIwIDAgMTYgMTYiIGZpbGw9IiMwMDAwMDAiIHg9IjEyOCIgeT0iMTI4IiByb2xlPSJpbWciIHN0eWxlPSJkaXNwbGF5OmlubGluZS1ibG9jazt2ZXJ0aWNhbC1hbGlnbjptaWRkbGUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0iYmxhY2siPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMS41IiBkPSJNMi43NSAxMi4yNWgxMC41bS0xMC41LTRoMTAuNW0tMTAuNS00aDEwLjUiPjwvcGF0aD48L2c+PC9zdmc+PC9zdmc+" alt="menu-hamburger" style="color:#000000" />
+                <img id="openModal" src="{{asset('img/hamburger-menu.png')}}"/>
 
-</head>
-<body>
-
-
-
+                    
 <div id="menu-modal" class="menu-modal">
     <div class="menu-modal-header">
         <span class="close" id="closeModal">&times;</span>
         <h2>Меню</h2>
     </div>
+    
     <div class="modal-content">
+        <a href="{{route('home')}}">Главная</a>
         <a href="{{route('basket')}}"  id="cart-link">Корзина</a>
+        <a href="{{route('catalog')}}">Каталог</a>
         <a href ="">Контакты</a>
         <a href = "{{route('delivery')}}">Оплата и Доставка</a>
         <a href ="{{route('about')}}">О Нас</a>
         <a href ="{{route('question')}}">FAQ</a>
+
+    </div>
+    
+    <div class="menuinfo">
+        <div class="menunumber">
+            <svg xmlns="http://www.w3.org/2000/svg"
+             width="20"
+              height="20"
+               viewBox="0 0 24 24"
+                style="fill: rgba(0, 0, 0, 1)">
+                <path d="M20 10.999h2C22 5.869 18.127 2 12.99 2v2C17.052 4 20 6.943 20 10.999z"></path>
+                <path d="M13 8c2.103 0 3 .897 3 3h2c0-3.225-1.775-5-5-5v2zm3.422 5.443a1.001 1.001 0 0 0-1.391.043l-2.393 2.461c-.576-.11-1.734-.471-2.926-1.66-1.192-1.193-1.553-2.354-1.66-2.926l2.459-2.394a1 1 0 0 0 .043-1.391L6.859 3.513a1 1 0 0 0-1.391-.087l-2.17 1.861a1 1 0 0 0-.29.649c-.015.25-.301 6.172 4.291 10.766C11.305 20.707 16.323 21 17.705 21c.202 0 .326-.006.359-.008a.992.992 0 0 0 .648-.291l1.86-2.171a1 1 0 0 0-.086-1.391l-4.064-3.696z"></path>
+            </svg>
+            <span>+7(911) 508-20-90</span>
+        </div>
+    
+        
+        <P class="menuwork">с 9:00 до 21:00</P>
+        
     </div>
 </div>
-
                 </div>
+
                 @endif
 
-    
-
-            
-            
-        </div>
-    </header>
+                
+</header>
+<body>

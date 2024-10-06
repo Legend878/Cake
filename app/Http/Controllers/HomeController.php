@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Nachinka;
+use App\Models\Tags;
+
 class HomeController extends Controller
 {
     /**
@@ -26,14 +28,17 @@ class HomeController extends Controller
     {
         $nachinka = Nachinka::get();
         $product = Product::get();
-        $bento = Product::where('category_id', 1)->get(); //бенто торт
-        $myssovyi = Product::where('category_id', 2)->get(); //муссовый торт
-        $classic = Product::where('category_id', 3)->get(); //классический торт
-        $capcake = Product::where('category_id', 4)->get(); //капкйки
+        $bento = Product::where('category_id', 1)->limit(5)->get(); //бенто торт
+        $myssovyi = Product::where('category_id', 2)->limit(5)->get(); //муссовый торт
+        $classic = Product::where('category_id', 3)->limit(5)->get(); //классический торт
+        $capcake = Product::where('category_id', 4)->limit(5)->get(); //капкйки
+        $packs = Product::where('category_id', 5)->limit(5)->get(); //nabor
+
+        $tags = Tags::get();
 
         
         
-        return view('index',compact('bento','product','myssovyi','classic','capcake','nachinka'));
+        return view('index',compact('bento','product','myssovyi','classic','capcake','nachinka','packs','tags'));
     }
     
 }

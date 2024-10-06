@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+
+
 use App\BussinesLogic\OrderUsers;
-use Illuminate\Support\Facades\Log;
+// use Illuminate\Support\Facades\Log;
 use App\BussinesLogic\Zakaz;
+// use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Kenvel\Tinkoff;
-use PharIo\Manifest\Email;
+// use Kenvel\Tinkoff;
+// use PharIo\Manifest\Email;
+// use App\Models\DateOrder;
+// use App\Models\OrderUser;
+// use PhpParser\Node\Stmt\Catch_;
 
 class PaymentController extends Controller
 {
@@ -15,110 +21,75 @@ class PaymentController extends Controller
 
     public $status;
 
-    //  public function __construct()
-    //  {
-
-       
-
-    //        $this->tinkoff = new Tinkoff(
-    //     'https://securepay.tinkoff.ru/v2',
-        
-    //       config('tinkoff.merchant_id'),
-    //      config('tinkoff.secret_key')
-    //   );
-    //  }
+    
 
     public function createPayment(Request $request)
      { 
-    //     $api_url    = 'https://securepay.tinkoff.ru/v2/';
-    //     $terminal   = config('tinkoff.merchant_id');
-    //     $secret_key = config('tinkoff.secret_key');
 
-    //     $tinkoff = new Tinkoff($api_url, $terminal, $secret_key);
-
-        // // Получаем данные из сессии
-        // $cart = session('cart', []);
+         // Получаем данные из сессии
+         $cart = session('cart', []);
+        //  Создаем экземпляр Zakaz
+         $zakaz = new Zakaz(0,0,'0','0'); // ID не важен для подсчета
+         $totalPrice = $zakaz->getTotal(); // Получаем итоговую стоимость
         
-        // Создаем экземпляр Zakaz
-        // $zakaz = new Zakaz(0); // ID не важен для подсчета
-        // $totalPrice = $zakaz->getTotal(); // Получаем итоговую стоимость
-        
-        $name = $request->name;
-        $lastname = $request->lastname;
-        $email = $request->Email;
-        $number = $request->number_phone;
-        $delivery = $request->delivery;
-        $street = $request->street;
-        $kv = $request->kv;
-        $up = $request->up;
-        $padik = $request->padik;
-        $date = $request->date2;
-        $time = $request->Time;
-        $comment = $request->comment;
-
-         try{
-            $Order = new OrderUsers($name,$lastname,$email,$number,$delivery,$street,$kv,$up,$padik,$date,$time,$comment);
-            echo $Order->getName().'<br>';
-            echo $Order->Getlastname().'<br>';
-            echo $Order->GetEmail().'<br>';
-            echo $Order->GetNumber().'<br>';
-         }catch(\Exception $e){
-        
-            return back()->withErrors(['error'=>$e->getMessage()]);
-        }
+         $validatedData = $request->validate([
+          'name' => 'required|string|max:100', // Имя обязательно, строка, максимум 255 символов
+          'lastname' => 'required|string|max:100', // Фамилия обязательно, строка, максимум 255 символов
+          'Email' => 'required|email|max:150', // Электронная почта обязательна, должна быть корректной и максимум 255 символов
+          'number_phone' => 'required|string|max:12', // Номер телефона обязателен, строка, максимум 15 символов
+          'delivery' => 'required|string|max:160', // Доставка обязательна, строка, максимум 255 символов
+          'street' => 'nullable|string|max:255', // Улица обязательна, строка, максимум 255 символов
+          'kv' => 'nullable|string|max:10', // Квартира может быть пустой, строка, максимум 10 символов
+          'up' => 'nullable|string|max:10', // Подъезд может быть пустым, строка, максимум 10 символов
+          'padik' => 'nullable|string|max:10', // Падик может быть пустым, строка, максимум 10 символов
+          'date' => 'required|date', // Дата обязательна и должна быть корректной датой
+          'time' => 'required|string', // Время обязательно и должно соответствовать формату "чч:мм"
+          'Cakefoto' => 'nullable|file|mimes:jpg,jpeg,png|max:2048', // Файл может быть пустым, должен быть изображением и не превышать 2MB
+          'comment' => 'nullable|string|max:500', // Комментарий может быть пустым, строка, максимум 500 символов
+      ]);
+  
+      // Если валидация прошла успешно, вы можете продолжить обработку данных.
+      // Например:
+      $name = $validatedData['name'];
+      $lastname = $validatedData['lastname'];
+      $email = $validatedData['Email'];
+      $number = $validatedData['number_phone'];
+      $delivery = $validatedData['delivery'];
+      $street = $validatedData['street'];
+      $kv = $validatedData['kv'];
+      $up = $validatedData['up'];
+      $padik = $validatedData['padik'];
+      $date = $validatedData['date'];
+      $time = $validatedData['time'];
+      $file = $request->file('Cakefoto'); // Получаем файл из запроса
+      $comment = $validatedData['comment'];
     
+          try{    
+            $Order = new OrderUsers($name,$lastname,$email,$number,$delivery,$street,$kv,$up,$padik,$date,$time,$file,$comment);
+            return $Order->Payment();
+          }catch(\Exception $e){
+        
+             return redirect()->back()->withErrors(['error'=>$e->getMessage()]);
+         }
 
-        //проверку надо сделать данных + фотка
-      
-       
-        // Подготовка данных для платежа
-        // $payment = [
-        //     'OrderId'       => uniqid(),        //Ваш идентификатор платежа
-        //     'Amount'        => $totalPrice,           //сумма всего платежа в рублях
-        //     'Language'      => 'ru',            //язык - используется для локализации страницы оплаты
-        //     'Description'   => $comment,   //описание платежа
-        //     'Email'         => $email,//email покупателя
-        //     'Phone'         => $number,   //телефон покупателя
-        //     'Name'          => $name, //Имя покупателя
-        //     'Taxation'      => 'osn'     //Налогооблажение
-           
-        // ];
 
-        // foreach($payment as $id=>$elem){
-        //     echo $id.'='.$elem.'<br>'; 
-        // }
-        // // Подготовка массива товаров (если есть)
-       
-        //  $items = [
-        //      [
-                
-        //          'Name' => '1',
-        //          'Price' => $totalPrice, // Цена в рублях
-        //          'Quantity' => 1,
-        //          'NDS' => "vat0",
-      
-        //     ],
-      
-        //  ];
+         
 
-        //  $paymentURL = $tinkoff->paymentURL($payment, $items);
 
-        //  if(!$paymentURL){
-        //     echo($tinkoff->error);
-        //   } else {
-        //     $payment_id = $tinkoff->payment_id;
-        //     // return redirect($result['payment_url']);
-        //   }
 
-      
-        //  if ($paymentURL) {
-        //      return redirect($paymentURL); // Перенаправление на страницу оплаты
-        //   } else {
-           
-        //       return response()->json(['error' => $this->tinkoff->error], 400); // Обработка ошибки
-        //   }
+
+
+
+
+
+
+    
     
     }
+
+
+    
+        
 
   
 
@@ -128,6 +99,6 @@ class PaymentController extends Controller
 }
     
 
-    
+
 
 

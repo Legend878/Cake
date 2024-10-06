@@ -10,4 +10,6 @@ class Delivery extends Model
     use HasFactory;
 
     protected $table = 'deliveries';
+    protected $fillable = ['type_del'];
+
 }

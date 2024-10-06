@@ -28,7 +28,7 @@ main{
     margin: 5px;
     display: flex;
     flex-direction: column;
-    color:white;
+    color:rgb(0, 0, 0);
     cursor: pointer;
     align-items: center;
     position: relative;
@@ -36,37 +36,66 @@ main{
 }
 
 
-/* 
-.menu_dropdown{
-    display:flex;
-    flex-direction: column;
-    background:rgb(212, 207, 207);
-    border-radius: 8px;
-    padding: 8px;
-    margin-top: 10px;
-    align-items: center;
+.menu_dropdown {
+            
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap; /* Позволяет элементам переноситься на новую строку */
+  justify-content: space-between; /* Распределяет элементы по горизонтали */
+  gap: 10px; 
+}
+.oneblock,.form-oneblock{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 5px;
   
-    
-   
-    
+}
+
+.dvablock, .form-dvablock{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 5px;
 
 }
-.menu_dropdown a{
-    color:rgb(0, 0, 0);
-    transition: 0.2s linear;
-    border-radius: 8px;
-    padding: 5px;
-    flex-direction: row;
-   
-    
-    
-} */
-.menu_dropdown a:hover{
+
+
+.menu_dropdown button {
+   background-color: #000000; 
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  color: #ffffff;
+  transition: background-color 0.3s, transform 0.3s;
+  /* flex: 1 1 calc(30% - 10px); Занимает 30% ширины с учетом отступов */
+  /* min-width: 120px; Минимальная ширина ссылки */
+  /* max-width: 200px; Максимальная ширина ссылки */
+  position: relative; /* Для абсолютного позиционирования псевдоэлементов */
+  overflow: hidden; /* Скрывает содержимое, выходящее за пределы */
+  flex: 1 1 auto; /* Элементы могут уменьшаться и расти */
+  /* min-width: 80px; Минимальная ширина ссылки */
+  /* max-width: 200px; Максимальная ширина ссылки */
+  white-space: nowrap; /* Запрет на перенос текста */
+  overflow: hidden; /* Скрывает переполнение */
+  text-overflow: ellipsis; /* Добавляет многоточие для длинного текста */
+}
+
+
+.menu_dropdown button:hover{
     color:white;
+    cursor: pointer;
+
     align-items: center;
     outline: 2s solid;
     border-radius: 8px; 
     outline: 2px solid;
+    background-color:rgb(236, 103, 230); /* Цвет фона при наведении */
+    color: #ffffff; /* Цвет текста при наведении */
+     transform: scale(1.05); /* Увеличение при наведении */
+    border-radius: 30px;
     
    
    
@@ -112,11 +141,18 @@ main{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
     box-shadow: 0px 1px 0 0;
     justify-content: center;
     white-space: nowrap;
     overflow-x: auto;
+    display: flex; /* Используем flexbox для горизонтального размещения карточек */
+    padding-right: 0px;
+    padding-bottom: 20px;
+    padding-left: 0px;
+    justify-content:left;
     
    
 }
@@ -133,12 +169,19 @@ main{
     padding: 20px;
     flex-direction: column;
     border-radius: 12px;
-    margin: 20px; /* Отступ между карточками */
+    margin-top: 20px; /* Отступ между карточками */
+    margin-left: 10px;
     border: 1px solid #ccc; /* Граница карточки */
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Тень карточки */
 }
 
 .cake_card{
+  display: flex;
+  flex: 0 0 auto; /* Не позволяет карточкам сжиматься */
+  scroll-snap-align: center; /* Центрирует карточки при прокрутке */
+  max-width: 300px;
+  flex-direction: column;
+  min-width: 200px;
     width: 70%;
     background-color: rgb(245, 245, 245);
     padding: 20px;
@@ -154,14 +197,16 @@ main{
     border-radius: 5%;
     object-fit: cover;
     height: auto;
-    margin-bottom: 10px; /* Отступ между изображением и текстом */
+    /* margin-bottom: 10px; Отступ между изображением и текстом */
 
 
 }
 .image:hover{
-    
-    background-color: rgb(159, 10, 228);
+    cursor: pointer;
+     background-color: rgb(159, 10, 228); 
     box-shadow: 0 0 20px 0 rgb(159, 10, 228);
+    border-radius: 12px;
+
 }
 
 .info_cake{
@@ -207,12 +252,16 @@ main{
 .katalog {
     position: relative;
     overflow: hidden;
+    overflow-x: auto; /* Позволяет горизонтальную прокрутку */
+    white-space: nowrap; /* Убирает перенос строк */
   }
   
   .lenta > div {
+    
     flex: 0 0 auto;
     width: 220px;  /* Ширина элемента */
-    height: 320px; /* Высота элемента */
+    height: auto;
+    
   }
 
   .about{
@@ -373,3 +422,71 @@ max-width: 100%;
   }
 
   
+
+.item-container {
+  text-align: center;
+}
+
+.thumbnail-image {
+  width: 200px; /* Размер миниатюры */
+  cursor: pointer; /* Указатель при наведении */
+}
+
+.fullscreen-modal {
+  display: none; /* Скрыто по умолчанию */
+  position: fixed; /* Оверлей на весь экран */
+  z-index: 9999; /* Убедитесь, что z-index высокое значение */
+  left: 0;
+  top: 0;
+  width: 100%; /* Полная ширина */
+  height: 100%; /* Полная высота */
+  overflow: auto; /* Прокрутка, если нужно */
+  background-color: rgba(0, 0, 0, 0.8); /* Полупрозрачный фон */
+}
+
+.fullscreen-image {
+  margin: auto;
+  display: block;
+  width: auto; /* Автоматическая ширина */
+  max-width: 90%; /* Максимальная ширина */
+  max-height: 90%; /* Максимальная высота */
+}
+.cookie-consent {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #000000; /* Темный фон */
+  color: white; /* Цвет текста */
+  padding: 15px 20px; /* Отступы */
+  border-radius: 5px; /* Закругленные углы */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Тень */
+  display: none; /* Скрыто по умолчанию */
+  z-index: 1000; /* На переднем плане */
+}
+
+.cookie-content {
+  display: flex;
+  justify-content: space-between; /* Выравнивание содержимого */
+  align-items: center; /* Центрирование по вертикали */
+}
+
+.cookie-content a {
+  color: #fa52e4; /* Цвет ссылки */
+}
+
+.cookie-button {
+  background-color: #ff6f61; /* Цвет кнопки */
+  color: white; /* Цвет текста на кнопке */
+  border: none; /* Убираем границу */
+  padding: 10px 15px; /* Отступы */
+  border-radius: 5px; /* Закругленные углы */
+  cursor: pointer; /* Указатель при наведении */
+  transition: background-color 0.3s; /* Плавный переход */
+}
+
+.cookie-button:hover {
+  background-color: #e55a50; /* Цвет кнопки при наведении */
+}
+
+

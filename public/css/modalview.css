@@ -16,15 +16,20 @@
     margin: auto;
     padding: 40px;
     border: 1px solid #000000;
-    width: 80%;
-    max-width: 500px;
+    width: 90%;
+    max-width: 700px;
+    /* max-height: 700px; */
     background-color: white;
 }
-
+.conteiner-fullwindow{
+    display: flex;
+    flex-direction: column;
+}
 
 .modalimage {
-    width: 100%;
+    width: 300px;
     height: auto; /* Сохранить пропорции изображения */
+    cursor: pointer;
 }
 
 .closebutton {
@@ -51,27 +56,75 @@
 .conteiner-center{
     margin-top: 15px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
     flex-direction: row;
+    gap: 10px;
 }
 .titlecake{
 
     position: relative;
-    width: 5%;
-    padding: 30px;
+    /* width: 5%; */
+    /* padding: 30px; */
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 
 }
 fieldset{
     border: none;
 }
-.conteiner-right .conteiner-left{
-    display:flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
+.conteiner-left{
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.conteiner-right {
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
+/* .form-nachinka{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+} */
+.select-nachinka{
+    flex-direction: column;
+    display: flex;
+    width:100%;
+    max-width: 300px;
+    gap: 5px;
+}
+.select-nachinka select#quantity{
+    border-radius: 8px;
+    outline: auto;
+    padding: 4px;
 
+
+}
   
+  .form-nachinka{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+  }
   
+.faq-modal{
+    flex-direction: row;
+  list-style: none;
+  margin-bottom: 10px;
+  padding: 15px;
+  border-bottom: 2px solid #6d6b6b;
+}
+
+.list-modal{
+    display: flex;
+    flex-direction: row;
+    max-width: 600px;
+}

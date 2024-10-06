@@ -9,18 +9,20 @@ use Illuminate\Support\Facades\Auth;
 class AdminMiddleware
 {
 
-    //admin@example.ru
-    //admin
-
+  
     public function handle(Request $request, Closure $next)
     {
-        // Проверяем, авторизован ли пользователь и является ли он администратором
-        if (!Auth::guard('admin')->check()) {
+         // Проверяем, авторизован ли пользователь как администратор
+         if (!session()->has('admin_authenticated') || !Auth::guard('admin')->check()) {
             return redirect('/login'); // Перенаправление на страницу входа
         }
 
-        return $next($request);
-    
+        // Проверяем, ввел ли пользователь код подтверждения
+        if (!session()->has('verification_code_entered')) {
+            return redirect()->route('verification.form'); // Перенаправление на страницу ввода кода
+        }
+
+        return $next($request); // Продолжаем выполнение запроса
     }
     
 }

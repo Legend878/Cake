@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('order_fabric', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('order_id');
-            $table->timestamp('created_at');
+            $table->string('orderID_bank')->nullable(false);
+            $table->text('status_order')->nullable(false);
+            $table->bigInteger('number_tranzak')->nullable(false);
+            $table->timestamps();
 
             $table->foreign('order_id')->references('id')->on('order_users');
         });

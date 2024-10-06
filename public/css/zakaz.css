@@ -12,20 +12,24 @@
   }
   
   /* Стили содержимого модального окна */
-  .modal-content {
+  .modal-content-basket {
     /* position: relative;
     margin: auto; */
-    padding: 40px;
-    border: 1px solid #000000; 
+    /* padding: 40px; */
     /* width: 80%;
     max-width: 500px; */
+    padding: 10px;
     width: 100%;
     background-color:none;
     display: flex;
     gap:20px;
     justify-content:space-around;
     align-items: stretch;
+    flex-direction: column;
     
+  }
+  .button-delete{
+    border: none; background: none; color: red; cursor: pointer;
   }
   
   /* Стили заголовка модального окна */
@@ -37,7 +41,9 @@
     background-color: #000;
     
   }
-  
+  #delivery-info, #pickup-info {
+    display: none; /* Скрываем оба блока по умолчанию */
+}
   /* Стили кнопки закрытия модального окна */
   .close {
     position: absolute;
@@ -66,7 +72,134 @@
     padding: 20px 25px;
     box-shadow: 0px 1px 0px 0px;
     border-radius:8px ;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
   }
+ 
+  .product-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.product-table th, .product-table td {
+    padding: 8px;
+    text-align: center;
+}
+
+.product-table th {
+    background-color: #f2f2f2;
+}
+
+.product-image {
+    width: 50px; /* Ширина изображения */
+    height: auto; /* Автоматическая высота */
+}
+
+.button-delete {
+  background-color: red; /* Цвет кнопки удаления */
+  color: white; /* Цвет текста кнопки */
+  border: none; /* Убираем рамку */
+  padding: 5px 10px; /* Отступы кнопки */
+  cursor: pointer; /* Курсор при наведении */
+  border-radius: 12px;
+}
+.modal-body-two{
+  display: none;
+}
+/* Адаптивность для мобильных устройств */
+@media screen and (max-width: 600px) {
+    .product-table {
+        display: block; /* Делаем таблицу блочной для управления отображением */
+        overflow-x: hidden; /* Отключаем прокрутку по оси X */
+    }
+    .modal-body-two{
+      padding: 20px 15px;
+      box-shadow: 0px 1px 0px 0px;
+      border-radius:8px ;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .modal-body{
+      display: none;
+    }
+
+    .product-table thead {
+        display: none; /* Скрываем заголовки таблицы на мобильных */
+    }
+
+    .product_item {
+        display: flex;
+        flex-direction: row; /* Вертикальное расположение ячеек внутри строки */
+        margin-bottom: 10px; /* Отступ между товарами */
+        border: 1px solid #ddd; /* Рамка для каждой строки */
+        padding: 10px; /* Отступы внутри строки */
+        background-color: #f9f9f9; /* Фоновый цвет для строк */
+        align-items: center;
+    }
+
+    .product_item td {
+        display: block; /* Делаем ячейки блочными элементами */
+        width: 100%; /* Полная ширина для каждой ячейки */
+        text-align: left; /* Выравнивание текста по левому краю */
+        border: none; /* Убираем рамку для ячеек на мобильных */
+        margin-bottom: 5px; /* Отступ между ячейками */
+    }
+
+    .name-cell,
+    .size-cell,
+    .nachinka-cell,
+    .quantity-cell {
+        display: inline-block; /* Отображаем как блочные элементы для объединения информации */
+        width: auto; /* Автоматическая ширина для объединенных ячеек */
+    }
+}
+  
+  /* .product-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.product-table th, .product-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.product-table th {
+    background-color: #f2f2f2;
+}
+
+.product-image {
+    width: 50px; /* Ширина изображения */
+
+
+.button-delete {
+    background-color: red; /* Цвет кнопки удаления */
+    color: white; /* Цвет текста кнопки */
+    border: none; /* Убираем рамку */
+    padding: 5px 10px; /* Отступы кнопки */
+    cursor: pointer; /* Курсор при наведении */
+    border-radius: 12px;
+}
+
+/* Адаптивность для мобильных устройств */
+@media screen and (max-width: 600px) {
+    .product-table {
+      width: 100%;
+      display: contents;
+        font-size: 14px; /* Уменьшаем размер шрифта для мобильных */
+    }
+
+    .product-table th, .product-table td {
+        padding: 5px; /* Уменьшаем отступы */
+    }
+
+    .product-image {
+        width: 40px; /* Уменьшаем ширину изображения на мобильных */
+    }
+}
   
   /* Стили футера модального окна */
   .modal-footer {
@@ -297,4 +430,22 @@
 
 #1:checked ~ .client_delivery{
   display: flex;
+}
+
+
+.choosetimedel{
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  width: 100%;
+
+}
+.ChooseDelivery{
+  display: flex;
+  border-radius: 8px;
+  max-width: 300px;
+  padding: 10px;
+  outline: auto;
+  width: 100%;
+
 }

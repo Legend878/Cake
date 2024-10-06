@@ -16,9 +16,17 @@ return new class extends Migration
             $table->string('name_cake', 50)->nullable(false);
             $table->string('image')->nullable(false);
             $table->decimal('price', 10, 2)->nullable(false);
-            $table->text('description')->nullable(false);
+            $table->text('description')->nullable();
             $table->unsignedBigInteger('category_id')->nullable(false);
             $table->foreign('category_id')->references('id')->on('categories');
+
+            $table->unsignedBigInteger('tags_one_id')->nullable(false);
+
+            $table->unsignedBigInteger('tags_two_id')->nullable(null);
+
+            $table->foreign('tags_one_id')->references('id')->on('tags');
+            $table->foreign('tags_two_id')->references('id')->on('tags');
+
             $table->timestamps();
         });
     }

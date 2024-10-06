@@ -5,15 +5,17 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\Controllers\Validator;
 use App\BussinesLogic\CreateProduct; 
+use App\Models\Tags;
 
 class CreateController extends Controller
 {
     public function index(){
         $categories = Category::all();
+        $tags = Tags::all();
 
 
 
-        return view('Create',compact('categories'));
+        return view('Create',compact('categories','tags'));
     }
 
     public function CreateAdd( Request $request){
@@ -23,12 +25,15 @@ class CreateController extends Controller
         $price = $request->Price;
         $decription = $request->Description;
         $category = $request->category_id;
+        $tags_one = $request->tags_one_id;
+        $tags_two = $request->tags_two_id;
+
 
 
         try{
 
           //  $product = new Product();
-            $create = new CreateProduct($name, $image,$price,$decription, $category);
+            $create = new CreateProduct($name, $image,$price,$decription, $category, $tags_one, $tags_two);
 
            // $data = $create->getData(); 
 

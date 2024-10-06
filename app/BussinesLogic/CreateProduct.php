@@ -1,25 +1,29 @@
 <?php 
 namespace App\BussinesLogic;
-
 use App\Models\Product;
-use Intervention\Image\Facades\Image;
+
 class CreateProduct{
     protected $name_cake;
     protected $image;
     protected $price;
     protected $category;
     protected $description;
+    protected $tags_one;
+    protected $tags_two;
 
 
 
 
-    public function __construct($name_cake, $image,$price, $description,$category)
+    public function __construct($name_cake, $image,$price, $description,$category,$tags_one, $tags_two)
     {
         $this->name_cake = $name_cake;
         $this->image = $image;
         $this->price = $price;
         $this->description = $description;
         $this->category = $category;
+        $this->tags_one = $tags_one;
+        $this->tags_two = $tags_two;
+
 
         $this->Valid();
     }
@@ -56,6 +60,7 @@ class CreateProduct{
         throw new \Exception('Размер файла не должен превышать 5 МБ.');
     }
 
+
     // Сохранение файла
     $this->image = $this->storeImage();
 
@@ -77,14 +82,18 @@ class CreateProduct{
         }
     }
 
+
     private function storeImage()
 {
 
+    
     // Сохранение файла в папку 'public/cakeimg'
-            $path = $this->image->store('cakeimg', 'public'); // Сохраняем файл в 'storage/app/public/cakeimg'
+    $path = $this->image->store('cakeimg', 'public'); // Сохраняем файл в 'storage/app/public/cakeimg'
 
-        return $path; // Возвращаем путь к файлу
+
+    return $path; // Возвращаем путь к файлу
 }
+
 
 
 public function save()
@@ -96,6 +105,8 @@ public function save()
         $product->price = $this->price;
         $product->description = $this->description;
         $product->category_id = $this->category; // Убедитесь, что это правильный ключ
+        $product->tags_one_id = $this->tags_one;
+        $product->tags_two_id = $this->tags_two;
 
         // Сохраняем продукт в базе данных
         $product->save();

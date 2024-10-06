@@ -1,10 +1,7 @@
 @include('header')
-
-<form class="obrabotka" action="{{route('pay'), $totalPrice}}"  method="post" enctype="multipart/form-data">
     <div id="cart-modal" class="modal">
-      @csrf
        {{--обьеним 2 блока--}}
-         <div class="modal-content"> {{-- первый блок корзины с товаррами --}}
+         <div class="modal-content-basket"> {{-- первый блок корзины с товаррами --}}
           <div class ="trubleblock">
           <div class="doubleblock">
           <div class="block_header">
@@ -13,41 +10,97 @@
             </div>
             <div class="modal-body">
               @if(session('cart'))
-              <table class="ordershow">
-                  <thead class="ordertablehead">
+              <table class="product-table">
+                  <thead>
                       <tr>
-                          <th colspan="2" class="orderinfo">Название</th>
-                          <th class="orderinfo">Количество</th>
-                          <th class="orderinfo">Цена</th>
+                          <th>Изображение</th>
+                          <th>Наименование</th>
+                          <th>Размер</th>
+                          <th>Начинка</th>
+                          <th>Количество</th>
+                          <th>Цена</th>
+                          <th>Действия</th>
                       </tr>
                   </thead>
-                  <tbody class="ordertablebody">
+                  <tbody>
                       @foreach(session('cart') as $id => $item)
-                          <tr>
-                            <td><img src="{{asset('storage/'.$item['image'])}}" style="width: 50px; height: auto;"></td>
+                          @if($item['name_cake'] === 'Доставка') <!-- Проверяем, является ли элемент доставкой -->
+                              @continue <!-- Пропускаем итерацию для доставки -->
+                          @endif
+                          <tr class="product_item">
+                              <td><img src="{{ asset('storage/'.$item['image']) }}" alt="{{ $item['name_cake'] }}" class="product-image"></td>
                               <td>{{ $item['name_cake'] }}</td>
-                              <td>{{ $item['quantity'] }}</td>
-                              <td>{{ $item['price'] }} руб.</td>
-              
-                          
-                            </tr>
-                      @endforeach
-                    
+                              <td>{{ $item['size'] }}</td>
+                              <td>{{ $item['nachinka'] }}</td>
+                              <td>{{ $item['quantity'] }} шт.</td>
+                              <td>{{ (int)$item['price'] }} &#8381;</td>
+                              <td>
+                                  <form action="{{ route('deletebasket') }}" method="POST" style="display:inline;">
+                                      @csrf
+                                      <input type="hidden" name="unique_key" value="{{ $item['id'] }}-{{ $item['size'] }}-{{ $item['nachinka'] }}">
+                                      @if($item['name_cake'] !== 'Доставка') <!-- Условие для проверки, не является ли товар доставкой -->
+                                          <button type="submit" class="button-delete">&times; Удалить</button>
+                                      @endif
+                                  </form>
+                              </td>
+                          </tr>
+                      @endforeach <!-- Закрываем цикл foreach -->
                   </tbody>
-                  
-                    
-                 
               </table>
-               @else
-              <p>Ваша корзина пуста.</p>
-               @endif
-
-          
-        
-
-            </div>
+          @else
+              <p>Ваша корзина пуста.</p> <!-- Сообщение, если корзина пустая -->
+          @endif
           </div>
-
+          <div class="modal-body-two">
+            @if(session('cart'))
+          <table class="product-table">
+              <thead>
+                  <tr>
+                      <th>Изображение</th>
+                      <th>Товар</th> <!-- Объединенный заголовок -->
+                      <th>Цена</th>
+                      <th>Действия</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  @foreach(session('cart') as $id => $item)
+                      @if($item['name_cake'] === 'Доставка') <!-- Проверяем, является ли элемент доставкой -->
+                          @continue <!-- Пропускаем итерацию для доставки -->
+                      @endif
+                      <tr class="product_item">
+                          <td><img src="{{ asset('storage/'.$item['image']) }}" alt="{{ $item['name_cake'] }}" class="product-image"></td>
+      
+                          <!-- Объединяем ячейки для мобильного отображения -->
+                          <td class="combined-cell">
+                              <div class="product-details">
+                                  <strong>{{ $item['name_cake'] }}</strong><br>
+                                  {{ $item['size'] }}<br>
+                                  {{ $item['nachinka'] }}<br>
+                                  {{ $item['quantity'] }} шт.
+                              </div>
+                          </td>
+      
+                          <td>{{ (int)$item['price'] }} &#8381;</td>
+                          <td>
+                              <form action="{{ route('deletebasket') }}" method="POST" style="display:inline;">
+                                  @csrf
+                                  <input type="hidden" name="unique_key" value="{{ $item['id'] }}-{{ $item['size'] }}-{{ $item['nachinka'] }}">
+                                  @if($item['name_cake'] !== 'Доставка') <!-- Условие для проверки, не является ли товар доставкой -->
+                                      <button type="submit" class="button-delete"> Удалить</button>
+                                  @endif
+                              </form>
+                          </td>
+                      </tr>
+                  @endforeach <!-- Закрываем цикл foreach -->
+              </tbody>
+          </table>
+      @else
+          <p>Ваша корзина пуста.</p> <!-- Сообщение, если корзина пустая -->
+      @endif
+          </div>
+          </div>
+          <form class="obrabotka" action="{{route('pay'), $totalPrice}}"  method="post" enctype="multipart/form-data">
+            @csrf 
           <div class="block_body"> 
 
             <div class="modal-header">
@@ -68,11 +121,11 @@
   
                 <label class="form_users">
                   <span>Ваше Имя</span>
-                  <input type="text" name="name"   autocomplete="username" autofocus >
+                  <input type="text" name="name" value="{{ old('name') }}"  autocomplete="username" autofocus >
                 </label>
                 <label class="form_users" >
                   <span>Контактный номер телефона</span>
-                  <input type="tel" name="number_phone" value ="+7" placeholder="+7 999 999 99 99"   autocomplete />
+                  <input type="tel" name="number_phone" value ="+7" placeholder="+7 999 999 99 99"  autocomplete />
               </label>
                 
 
@@ -81,11 +134,11 @@
 
                   <label class="form_users">
                     <span>Ваша Фамилия</span>
-                    <input type="text" name="lastname"  autocomplete="username" autofocus >
+                    <input type="text" name="lastname"  autocomplete="username" value="{{ old('lastname') }}" autofocus >
                     </label>
             <label class="form_users">
                 <span>Ваш Email</span>
-                <input type="Email" name="Email" placeholder="Natale@mail.ru" autocomplete>
+                <input type="Email" name="Email" placeholder="NatalieCakeWork@yandex.ru" value="{{ old('Email') }}" autocomplete>
             </label>
 
                 </div>
@@ -103,36 +156,18 @@
                 <div class="form_radio_btn">
                   
                   @foreach($delivery as $deliveries)
-                  <input id="{{$deliveries->id}}" type="radio" name="delivery" value="{{$deliveries->type_del}}" onchange="updateText()"  @if($loop->first) checked @endif  > 
+                  <input id="{{$deliveries->id}}" type="radio" name="delivery" value="{{$deliveries->id}}" onchange="updateText()"   onchange="handleDeliveryChange(this)" 
+                  @if($loop->first && !session('cart') || !isset(session('cart')['delivery']))   @endif>
+            {{--onchange="updateText()"  @if($loop->first) checked @endif --}}
                   <label id="selected-delivery" for="{{$deliveries->id}}">{{$deliveries->type_del}}</label>
                   @endforeach
+
                 </div>
 
-                <style>
-                  #delivery-info, #pickup-info {
-                      display: none; /* Скрываем оба блока по умолчанию */
-                  }
-              </style>
+  
+
                 
-
-<!-- Блок для самовывоза -->
-<div id="pickup-info">
-  {{-- <p>Информация о самовывоз!!!е.</p> --}}
-  <label class="date2">
-    <span>Дата самовывоза</span>
-    <input type="date" name="date2" />
-</label>  
-{{-- <form class="delivery"> --}}
-  <label for="delivery-time">Время самовывоза
-    <select class="ChooseDelivery" id="delivery-time">
-      @foreach($time as $times)
-      <option value="{{$times->id}}" name="Time">{{$times->time}}</option>
-      @endforeach
-      
-    </select>
-  </label>
-</div>
-
+                
 
 
                 <div  id="delivery-info" class="client_delivery" style="display: flex">
@@ -153,25 +188,30 @@
               <span>Квартира</span>
               <input type="text" name="kv" placeholder="52">
             </label>
+          </div>
+
               
               </label>
               <label class="date2">
                   <span>Дата доставки</span>
-                  <input type="date" name="date2" />
+                  <input type="date" id="dateInput" name="date" min="{{ \Carbon\Carbon::today()->toDateString() }}"  />
+                  <p id="availability" style="color: orange"></p>
+                   
+            
+                  
               </label>  
               {{-- <form class="delivery"> --}}
-                <label for="delivery-time">Время доставки
-                  <select class="ChooseDelivery" id="delivery-time">
+                <label for="delivery-time" class="choosetimedel">Время доставки
+                  <select class="ChooseDelivery" id="delivery-time"  name="time">
                     @foreach($time as $times)
-                    <option value="{{$times->id}}" name="Time">{{$times->time}}</option>
+                    <option value="{{$times->id}}">{{$times->time}}</option>
                     @endforeach
                     
                   </select>
                 </label>
-                
+              
               {{-- </form> --}}
               
-              </div>
                 </div>
               </div>
 
@@ -191,18 +231,20 @@
           </div>
 
          </div> 
-
+         @if(session('cart'))
             <div class="modal-footer">
               <div class="total">
-                @if(session('cart'))
+                
                 <tr>
-                  <td>Итог</td>
+                  {{-- <td><strong>Итог:</strong></td> --}}
+                  <div id="total-price">Итого: 0 руб.</div>
 
-                  <td>{{$totalPrice}}</td>   
-                  {{-- <td>{{$item['price'] * $item['quantity'] }}</td>  --}}
+
+                  {{-- <td>{{$totalPrice}} рублей</td>    --}}
                 </tr>
-                <input type="hidden" name="frame" value="true">
-              <button type="submit" class="btn btn-primary">Оформить заказ</button>
+                <button type="submit" class="btn btn-primary">Оформить заказ</button>
+              <input type="checkbox" required> Нажимая на кнопку, вы даете согласие <a href="{{route('politics')}}" style="color: rgb(160, 37, 172)"> на обработку своих персональных данных и подтверждаете, что ознакомлены с публичной офертой и пользовательским соглашением</a>
+  
                 @endif
 
                 @if ($errors->any())
@@ -222,5 +264,7 @@
   </div>
 
 </form>
+
+
 
 @include('footer')
