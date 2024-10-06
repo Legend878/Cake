@@ -31,22 +31,48 @@ class PaymentController extends Controller
         //  Создаем экземпляр Zakaz
          $zakaz = new Zakaz(0,0,'0','0'); // ID не важен для подсчета
          $totalPrice = $zakaz->getTotal(); // Получаем итоговую стоимость
-        
+         try {
          $validatedData = $request->validate([
-          'name' => 'required|string|max:100', // Имя обязательно, строка, максимум 255 символов
-          'lastname' => 'required|string|max:100', // Фамилия обязательно, строка, максимум 255 символов
-          'Email' => 'required|email|max:150', // Электронная почта обязательна, должна быть корректной и максимум 255 символов
-          'number_phone' => 'required|string|max:12', // Номер телефона обязателен, строка, максимум 15 символов
-          'delivery' => 'required|string|max:160', // Доставка обязательна, строка, максимум 255 символов
-          'street' => 'nullable|string|max:255', // Улица обязательна, строка, максимум 255 символов
-          'kv' => 'nullable|string|max:10', // Квартира может быть пустой, строка, максимум 10 символов
-          'up' => 'nullable|string|max:10', // Подъезд может быть пустым, строка, максимум 10 символов
-          'padik' => 'nullable|string|max:10', // Падик может быть пустым, строка, максимум 10 символов
-          'date' => 'required|date', // Дата обязательна и должна быть корректной датой
-          'time' => 'required|string', // Время обязательно и должно соответствовать формату "чч:мм"
-          'Cakefoto' => 'nullable|file|mimes:jpg,jpeg,png|max:2048', // Файл может быть пустым, должен быть изображением и не превышать 2MB
-          'comment' => 'nullable|string|max:500', // Комментарий может быть пустым, строка, максимум 500 символов
-      ]);
+            'name' => 'required|string|max:30|regex:/^[а-яА-ЯёЁ\s]+$/u', // Добавлено регулярное выражение
+            'lastname' => 'required|string|max:30|regex:/^[а-яА-ЯёЁ\s]+$/u', // 
+            'Email' => 'required|email|max:150',
+            'number_phone' => 'required|string|max:12',
+            'delivery' => 'required|string|max:160',
+            'street' => 'nullable|string|max:255',
+            'kv' => 'nullable|string|max:10',
+            'up' => 'nullable|string|max:10',
+            'padik' => 'nullable|string|max:10',
+            'date' => 'required|date',
+            'time' => 'required|string',
+            'Cakefoto' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
+            'comment' => 'nullable|string|max:500',
+        ], [
+            // Пользовательские сообщения об ошибках
+            'name.required' => 'Имя обязательно для заполнения.',
+            'name.regex' => 'Имя обязательно русскими буквами.',
+
+            'name.string' => 'Имя должно быть строкой.',
+            'name.max' => 'Имя не может превышать 30 символов.',
+            
+            'lastname.required' => 'Фамилия обязательна для заполнения.',
+            'lastname.regex' => 'Фамилия обязательно русскими буквами.',
+            'lastname.string' => 'Фамилия должна быть строкой.',
+            'lastname.max' => 'Фамилия не может превышать 30 символов.',
+            
+            'Email.required' => 'Электронная почта обязательна для заполнения.',
+            'Email.email' => 'Введите корректный адрес электронной почты.',
+            'Email.max' => 'Электронная почта не может превышать 150 символов.',
+            
+            'number_phone.required' => 'Номер телефона обязателен для заполнения.',
+            'number_phone.max' => 'Номер телефона не может превышать 12 символов.',
+            
+            'delivery.required' => 'Поле доставки обязательно для заполнения.',
+            'date.required' => 'Поле даты обязательно для заполнения.',
+            // Добавьте аналогичные сообщения для остальных полей
+        ]);
+    }catch (\Illuminate\Validation\ValidationException $e) {
+        return redirect()->back()->withErrors($e->validator)->withInput();
+    }
   
       // Если валидация прошла успешно, вы можете продолжить обработку данных.
       // Например:
@@ -69,8 +95,8 @@ class PaymentController extends Controller
             return $Order->Payment();
           }catch(\Exception $e){
         
-             return redirect()->back()->withErrors(['error'=>$e->getMessage()]);
-         }
+            return redirect()->back()->withErrors(['error' => 'Произошла ошибка. Пожалуйста, попробуйте еще раз.']);     
+        }
 
 
          

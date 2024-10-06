@@ -207,7 +207,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (modalWindows[categoryID]) {
                 modalWindows[categoryID].style.display = 'flex';
             } else {
-                console.error(`Модальное окно для категории ${categoryID} не найдено.`);
             }
         });
     });

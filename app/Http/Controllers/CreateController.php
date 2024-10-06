@@ -46,28 +46,7 @@ class CreateController extends Controller
         }
 
        
-    //     $product = new Product();
-    //     $product->name_cake = $request->Name_cake;
-    //     if($request->hasFile('Image')){
-    //         $image = $request->file('Image'); // получение файла
-    //         $path = $image->store('cakeimg'); // сохранение файла
-    //         $product->image = $path; // присвоение пути файлу
-    //     }
-    //     else{
-    //         return
-    //         'Не удалось загрузить фотографию';
-    //     }
-    //     //$product->image = $request->Image;
-    //     $product->price = $request->Price;
-    //     $product->description = $request->Description;
-    //     $product->category_id = $request->category_id;
-    //    // $product->save();
-
-    
-
-    // dd($data);
-    //     return back();
-
+  
     }  
 
 }

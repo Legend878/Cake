@@ -36,7 +36,7 @@ class AdminProductController extends Controller
     }
 
     // Перенаправьте обратно с сообщением об успехе
-    return redirect()->back()->with('success', 'Товар успешно удален!');
+    return redirect()->back();
 
     }
 }
