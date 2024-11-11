@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
         // DB::whenQueryingForLongerThan(500,function(Connection $connection){
         //     //TODO оповещение о долгой разгрузке
         // });
-        #Помощники cutCode second videos
+        
 
     }
 }

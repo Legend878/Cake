@@ -12,12 +12,12 @@
         <div class="col">
             <h4>Контакты</h4>
             <ul>
-                <li>ИП Соколова Наталья Юрьевна</li>
-                <li>ОГРН/ОГРНИП 324350000034591</li>
-                <li>ИНН 352525202603</li>
-                <li>Адрес: г.Вологда, улица Конева, дом 20</li>
-                <li>Телефон: +7 (911) 508-20-90</li>
-                <li>Сотрудничество / Предложения Email: <a href="mailto:NatalieCakeWork@yandex.ru">NatalieCakeWork@yandex.ru</a></li>
+                <li>ИП Иванов Иван Иванович</li>
+                <li>ОГРН/ОГРНИП 00000000000000</li>
+                <li>ИНН 00000000000</li>
+                <li>Адрес: г.Город улица Улица дом 00</li>
+                <li>Телефон: +7 (999) 999 99 99 </li>
+                <li>Сотрудничество / Предложения Email: <a href="mailto:example@yandex.ru">example@yandex.ru</a></li>
             </ul>
         </div>
         <div class="col">

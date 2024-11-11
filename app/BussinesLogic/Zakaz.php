@@ -31,7 +31,6 @@ class Zakaz{
 
 
       // Получаем товар из базы данных
-    //   $this->setPrice(21);
       // Устанавливаем базовую цену из базы данных
 $product =  Product::find($this->id);
 
@@ -89,7 +88,7 @@ public function GetPrice(){
             $this->total  += $item['price'] * $item['quantity']; // Суммируем цену * количество
         }
 
-        return $this->total ; // Возвращаем итоговую стоимость
+        return $this->total ; 
         
 
     }
@@ -130,11 +129,11 @@ public function GetPrice(){
         $total = 0;
 
         foreach ($cart as $item) {
-            // Убедитесь, что 'price' и 'quantity' являются числовыми значениями
+            //  price и quantity являются числовыми значениями
             $total += (float)$item['price'] * (int)$item['quantity'];
         }
 
-        return $total; // Возвращаем итоговую стоимость
+        return $total; 
         
     }
 

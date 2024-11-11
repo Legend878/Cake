@@ -26,6 +26,7 @@ class HomeController extends Controller
     //  */
     public function index()
     {
+        //get all product with categories in general 
         $nachinka = Nachinka::get();
         $product = Product::get();
         $bento = Product::where('category_id', 1)->limit(5)->get(); //бенто торт

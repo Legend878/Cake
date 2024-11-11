@@ -61,7 +61,7 @@ class OrderUsers{
 
        
         if($this->ValidName($name)){
-            $Newname = mb_ucfirst(mb_strtolower($name)); //Имя Андрей
+            $Newname = mb_ucfirst(mb_strtolower($name)); 
 
             $this->SetName($Newname);
         }else{
@@ -110,7 +110,7 @@ class OrderUsers{
     }
 
     private function isValidFile($file) {
-       // Проверка типа файла
+       // check type file
     $allowedMimeTypes = ['image/jpeg', 'image/png'];
     $finfo = finfo_open(FILEINFO_MIME_TYPE);
     $mimeType = finfo_file($finfo, $file);
@@ -120,21 +120,21 @@ class OrderUsers{
         throw new \Exception('Допустимые форматы: JPEG, PNG, GIF.');
     }
 
-    // Проверка размера файла
+    // check type file
     $maxSize = 5 * 1024 * 1024; // 5 MB
     if (filesize($file) > $maxSize) {
         throw new \Exception('Размер файла не должен превышать 5 МБ.');
     }
 
 
-    // Сохранение файла
+    //save file
    
 
-     // Сохранение файла в папку 'public/cakeimg'
-     $file = $file->store('ImageUsers', 'public'); // Сохраняем файл в 'storage/app/public/cakeimg'
+     // save file in folder 'public/cakeimg'
+     $file = $file->store('ImageUsers', 'public'); // save file in path 'storage/app/public/cakeimg'
 
 
-     return $file; // Возвращаем путь к файлу
+     return $file;
 
     }
     
@@ -150,10 +150,10 @@ class OrderUsers{
         // Преобразуем строку даты в объект Carbon
         $orderDate = Carbon::parse($date);
     
-        // Ищем запись с указанной датой
+        // find date
         $cakeOrder = DateOrder::where('order_date', $orderDate)->first();
     
-        // Если записи нет, создаем ее
+        // If there is no record, create it
         if (!$cakeOrder) {
             $cakeOrder = DateOrder::create([
                 'order_date' => $orderDate,
@@ -162,7 +162,7 @@ class OrderUsers{
 
         }
     
-        // Обрабатываем доступные места
+        // We process available places
         return $this->createDate($orderDate);
     }
     
@@ -170,12 +170,12 @@ class OrderUsers{
 
     $cakeOrderfind = DateOrder::where('order_date', $orderDate)->first();
 
-        // Проверяем доступные места
+        // Checking available places
         if ($cakeOrderfind->avaliable_slots > 0) {
-            // Уменьшаем количество доступных мест
+            // Reducing the number of available seats
             $cakeOrderfind->avaliable_slots--;
-            $cakeOrderfind->save(); // Сохраняем изменения
-            return true; // Успешно обработано
+            $cakeOrderfind->save(); // save update
+            return true; // Успешно 
         } else {
             throw new \Exception("Нет доступных мест");
         }
@@ -249,7 +249,7 @@ class OrderUsers{
 
 
     private function isValidEmail($email) {
-        // Проверка на корректность email
+        // Проверка на корректность email check email
         return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
     }
 
@@ -262,7 +262,7 @@ class OrderUsers{
 
     private function isValidNumber($number){
 
-     // Удаляем все символы, кроме цифр
+     // Удаляем все символы, кроме цифр delete numbers and symbols
       $number = preg_replace('/\D/', '', $number);
         
         // Проверяем, что длина номера ровно 11 цифр и состоит только из цифр
@@ -305,7 +305,7 @@ class OrderUsers{
 
         $zakaz = new Zakaz(0,0,'0','0');
 
-        $totalPrice = $zakaz->getTotal(); // Получаем итоговую стоимость
+        $totalPrice = $zakaz->getTotal(); // get total
         $orderID = uniqid();
         $this->setOrderID($orderID);
 
@@ -369,7 +369,7 @@ class OrderUsers{
       
          if ($paymentURL) {
             $this->SaveUserOrder();
-             return redirect($paymentURL); // Перенаправление на страницу оплаты
+             return redirect($paymentURL); // redirect payment
           } else {
            
               return response()->json(['error' => $this->tinkoff->error], 400); // Обработка ошибки
@@ -396,7 +396,7 @@ class OrderUsers{
         $user = User::where('email', '=', $email)
                     ->first();
 
-        // Если пользователь не найден, создаем нового
+        // Если пользователь не найден, создаем нового create new user
         if (!$user) {
             $user = new User;
             $user->First_name = mb_ucfirst(mb_strtolower($this->name));
@@ -404,7 +404,7 @@ class OrderUsers{
             $user->email = strtolower($email);
             $user->number_phone = preg_replace('/\D/', '', $number); // Удаляем все символы кроме цифр
     
-            // Сохраняем нового пользователя в базе данных
+            // Сохраняем нового пользователя в базе данных save user
             $user->save();
         }
     
@@ -416,14 +416,14 @@ private function SaveUserOrder()
     // Проверяем существование пользователя
     $user = $this->DoubleUser($this->number, $this->email);
 
-    // Проверяем, нужно ли обновить имя и фамилию
+    // Проверяем, нужно ли обновить имя и фамилию check update name and last name
     if ($user->First_name !== mb_ucfirst(mb_strtolower($this->name)) || 
         $user->last_name !== mb_ucfirst(mb_strtolower($this->lastname))) {
-        // Обновляем имя и фамилию
+        // Обновляем имя и фамилию update
         $user->First_name = mb_ucfirst(mb_strtolower($this->name));
         $user->last_name = mb_ucfirst(mb_strtolower($this->lastname));
         
-        // Сохраняем изменения
+        // Сохраняем изменения save change
         $user->save();
     }
 
@@ -496,19 +496,19 @@ private function SaveFabricOrder($orderUser_id){
 
 public function clearSessionById($id)
 {
-    // Получаем текущую корзину из сессии
+    // Get the current cart from the session
     $cart = session('cart', []);
 
-    // Проходим по всем элементам корзины
+    // We go through all the elements of the basket
     foreach ($cart as $key => $item) {
-        // Проверяем, если id элемента соответствует переданному
+        // We check if the element id matches the passed one
         if (isset($item['id']) && $item['id'] == $id) {
-            // Удаляем элемент из корзины
+            // Removing an item from the basket
             unset($cart[$key]);
         }
     }
 
-    // Сохраняем обновлённую корзину обратно в сессию
+    // Save the updated cart back to the session
     session(['cart' => $cart]);
 }
 

@@ -29,7 +29,7 @@ class CreateProduct{
     }
 
     private function Valid(){
-        // Проверка на пустоту поля 
+        // Check if the field is empty
         if(empty($this->name_cake)){
             throw new \Exception('Название торта обязательно');
         }
@@ -39,12 +39,12 @@ class CreateProduct{
 
         // }
 
-         // Проверка на изображение
+         // Image check
     if (empty($this->image)) {
         throw new \Exception('Фото обязательно.');
     }
 
-    // Проверка типа файла
+    // check type file
     $allowedMimeTypes = ['image/jpeg', 'image/png'];
     $finfo = finfo_open(FILEINFO_MIME_TYPE);
     $mimeType = finfo_file($finfo, $this->image);
@@ -54,29 +54,28 @@ class CreateProduct{
         throw new \Exception('Допустимые форматы: JPEG, PNG, GIF.');
     }
 
-    // Проверка размера файла
+    // check size file
     $maxSize = 5 * 1024 * 1024; // 5 MB
     if (filesize($this->image) > $maxSize) {
         throw new \Exception('Размер файла не должен превышать 5 МБ.');
     }
 
 
-    // Сохранение файла
+    // sace file
     $this->image = $this->storeImage();
 
 
-
-        // Проверка на цену
+        // check price
         if (!is_numeric($this->price) || $this->price < 0) {
             throw new \Exception('Цена должна быть числом и не меньше нуля.');
         }
 
-        // Проверка на описание
+        // check description
         if (empty($this->description)) {
             throw new \Exception('Описание обязательно.');
         }
 
-        // Проверка на категорию
+        // chech category
         if (empty($this->category)) {
             throw new \Exception('Категория обязательна.');
         }
@@ -87,11 +86,11 @@ class CreateProduct{
 {
 
     
-    // Сохранение файла в папку 'public/cakeimg'
-    $path = $this->image->store('cakeimg', 'public'); // Сохраняем файл в 'storage/app/public/cakeimg'
+    // save file path 'public/cakeimg'
+    $path = $this->image->store('cakeimg', 'public'); // save file in 'storage/app/public/cakeimg'
 
 
-    return $path; // Возвращаем путь к файлу
+    return $path; //
 }
 
 

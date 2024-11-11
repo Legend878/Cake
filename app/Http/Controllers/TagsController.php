@@ -13,16 +13,15 @@ class TagsController extends Controller
     public function Tags(Request $request){
 
         
-         // Получаем ID выбранного тега
+         // Get the ID of the selected tag
          $tagId = $request->tag;
-          // Получаем ID выбранного тега
 
-        // Проверка на валидность ID тега
+        // Checking the validity of the ID tag
         if (!is_numeric($tagId)) {
             return response()->json(['error' => 'Invalid tag ID'], 400);
         }
 
-         // Перенаправляем пользователя на страницу с товарами по тегу
+         // Redirect the user to the page with products by tag
          return redirect()->route('TagsShow', ['id' => $tagId]);
      
 
@@ -31,14 +30,13 @@ class TagsController extends Controller
 
     public function TagsShow($id){
 
-        // Получаем товары с указанным тегом в двух колонках
+        // We receive products with the specified tag in two columns
         $product = Product::where('tags_one_id', $id)
-            ->orWhere('tags_two_id', $id) // Ищем по обеим колонкам
+            ->orWhere('tags_two_id', $id) // We search in both columns
             ->paginate(10);
             $nachinka = Nachinka::get();
 
-        // Возвращаем представление с товарами
-        // Возвращаем представление с товарами
+     
         return view('Tags', compact('product','nachinka'));
     }
 }

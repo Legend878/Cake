@@ -13,9 +13,14 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
     <script src="{{asset('script.js')}}" defer></script>
     
-    <meta name="description" content="NATALIE — онлайн-кондитерская с доставкой десертов. ◾ Выгодные цены ◾ Свежие продукты ◾ Уникальность ◾">
+    <meta name="description" content="{{ $page_description }}">
+    <meta name="description" content="Заказывайте вкусные торты и капкейки от NATALIE в Вологде! Уникальные бенто торты и изделия под заказ для вашего праздника.">
+    Торты на заказ в Город - NAME
+    <title>{{ $page_title }}</title>
 
-    <title> NATALIE </title>
+    @if (!$is_home)
+        <meta name="robots" content="noindex">
+    @endif
 </head>
 <body>
     <header>
@@ -77,7 +82,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href ="">Контакты</a>
+                    <a href ="{{route('contakt')}}">Контакты</a>
                     <a href = "{{route('delivery')}}">Оплата и Доставка</a>
                     <a href ="{{route('about')}}">О Нас</a>
                     <a href ="{{route('question')}}">FAQ</a>
@@ -87,7 +92,7 @@
                 
                     <div class="info">
                         <div class="phone">
-                            <span>+7(911) 508-20-90</span>
+                            <span>+7(999) 999-99-99</span>
                         </div>
                     
                         
@@ -102,7 +107,7 @@
                       style="fill: rgba(0, 0, 0, 1)">
                       <path d="M2.002 9.538c-.023.411.207.794.581.966l7.504 3.442 3.442 7.503c.164.356.52.583.909.583l.057-.002a1 1 0 0 0 .894-.686l5.595-17.032c.117-.358.023-.753-.243-1.02s-.66-.358-1.02-.243L2.688 8.645a.997.997 0 0 0-.686.893z"></path>
                     </svg>
-                    <span class="City">Вологда</span>
+                    <span class="City">Город</span>
                 </div>
                        
         
@@ -135,7 +140,7 @@
         <a href="{{route('home')}}">Главная</a>
         <a href="{{route('basket')}}"  id="cart-link">Корзина</a>
         <a href="{{route('catalog')}}">Каталог</a>
-        <a href ="">Контакты</a>
+        <a href ="{{route('contakt')}}">Контакты</a>
         <a href = "{{route('delivery')}}">Оплата и Доставка</a>
         <a href ="{{route('about')}}">О Нас</a>
         <a href ="{{route('question')}}">FAQ</a>
@@ -152,7 +157,7 @@
                 <path d="M20 10.999h2C22 5.869 18.127 2 12.99 2v2C17.052 4 20 6.943 20 10.999z"></path>
                 <path d="M13 8c2.103 0 3 .897 3 3h2c0-3.225-1.775-5-5-5v2zm3.422 5.443a1.001 1.001 0 0 0-1.391.043l-2.393 2.461c-.576-.11-1.734-.471-2.926-1.66-1.192-1.193-1.553-2.354-1.66-2.926l2.459-2.394a1 1 0 0 0 .043-1.391L6.859 3.513a1 1 0 0 0-1.391-.087l-2.17 1.861a1 1 0 0 0-.29.649c-.015.25-.301 6.172 4.291 10.766C11.305 20.707 16.323 21 17.705 21c.202 0 .326-.006.359-.008a.992.992 0 0 0 .648-.291l1.86-2.171a1 1 0 0 0-.086-1.391l-4.064-3.696z"></path>
             </svg>
-            <span>+7(911) 508-20-90</span>
+            <span>+7(999) 999-99-99</span>
         </div>
     
         

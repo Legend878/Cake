@@ -31,7 +31,7 @@ class StatusController extends Controller
 
         $tinkoff = new Tinkoff($api_url, $terminal, $secret_key);
 
-           $status = $tinkoff->getState('4893368556');
+           $status = $tinkoff->getState('000000');
 
            return $status;
 

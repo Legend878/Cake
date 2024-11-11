@@ -58,7 +58,6 @@ class DeleteOldOrders extends Command
             if ($fabric->orderUser && $fabric->orderUser->address) {
                 $addressId = $fabric->orderUser->address->id;
                 
-                // Теперь можно безопасно удалить адрес
                 $fabric->orderUser->address->delete();
                 $this->info("Адрес ID {$addressId} удален.");
             }

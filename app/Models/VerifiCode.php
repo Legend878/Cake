@@ -14,6 +14,6 @@ class VerifiCode extends Model
     protected $fillable = ['admin_id', 'code'];
    public function admin()
    {
-       return $this->belongsTo(Admin::class); // Предположим, что у вас есть модель Admin
+       return $this->belongsTo(Admin::class); 
    }
 }

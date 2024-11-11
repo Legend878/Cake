@@ -59,7 +59,7 @@ $(document).ready(function() {
 
             if (isToday) {
                 // Если сегодня, отключаем опции, которые меньше минимального времени
-                if (deliverySlotStartTime < minDeliveryTime) {
+                if (deliverySlotStartTime < minDeliveryTime || deliverySlotStartTime.getHours() >= 22) {
                     $(this).prop('disabled', true); // Отключаем опцию
                 } else {
                     $(this).prop('disabled', false); // Включаем опцию

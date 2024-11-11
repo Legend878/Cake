@@ -15,6 +15,7 @@ class AdminController extends Controller
     
 
         private $tinkoff;
+
         public function __construct()
         {
             $api_url = 'https://securepay.tinkoff.ru/v2/';
@@ -28,7 +29,7 @@ class AdminController extends Controller
         public function checkPaymentStatus(){
 
 
-    // Получаем все заказы
+    // Get All orders
     $orders = Fabric::all();
 
 
@@ -37,17 +38,19 @@ class AdminController extends Controller
 
 
     foreach ($orders as $order) {
-        // Получаем статус заказа из API Тинькофф
+
+        //Get status order user
+        
         $status = $this->tinkoff->getState($order->number_tranzak);
-        // // Если статус изменился на AUTHORIZED, обновляем статус в базе данных
+        // // if status change AUTHORIZED, update status in database
         if ($status === 'AUTHORIZED' && $order->status_order !== 'AUTHORIZED') {
 
-            $order->status_order = 'AUTHORIZED'; // Обновляем статус
-            $order->save(); // Сохраняем изменения
+            $order->status_order = 'AUTHORIZED'; //  update status
+            $order->save(); //save change
         }
     }
     Carbon::setLocale('ru');
-    // Получаем только заказы со статусом AUTHORIZED и CONFIRMED
+    // get only order with status AUTHORIZED and CONFIRMED
     $authorizedOrders = Fabric::where('status_order', 'AUTHORIZED')->with(['orderUser'])->paginate(10);  //->with(['user','product','delivery','time'])
 
     $groupedAuthorizedOrders = $authorizedOrders->groupBy(function ($order) {
@@ -61,7 +64,7 @@ class AdminController extends Controller
 
     return view('admin', [
         'groupedAuthorizedOrders' => $groupedAuthorizedOrders,
-        'authorizedOrders' => $authorizedOrders, // Передаем также объект с пагинацией
+        'authorizedOrders' => $authorizedOrders, // with pagination get object
     ]);
 }
 
@@ -76,25 +79,25 @@ class AdminController extends Controller
 
     $tinkoff = new Tinkoff($api_url, $terminal, $secret_key);
 
-       // Найти заказ по orderID_bank
+       // Find order  orderID_bank
        $order = Fabric::where('orderID_bank', $orderID_bank)->get(); 
        
        foreach ($order as $orders) {
-         // Проверяем, существует ли заказ
+         // Check if the order exists
            if ($orders->status_order === 'AUTHORIZED') {
-            // Подтверждаем статус заказа из API Тинькофф
+            // Confirming the order status from Tinkoff API
             $status = $tinkoff->confirmPayment($orders->number_tranzak);
 
-            // Обновляем статус для всех товаров в этом заказе
-                    // Устанавливаем статус CONFIRMED для каждого товара
+            // We are updating the status for all items in this order
+                    // Set the CONFIRMED status for each product
                     $orders->status_order = 'CONFIRMED'; 
-                    $orders->save(); // Сохраняем изменения для каждого товара
+                    $orders->save(); // save change
                 
             }
            
        }
     
-            // Отправляем уведомление пользователю
+            // Send a notification to the user
             Mail::to($userEmail)->send(new OrderStatusUpdate($orderID_bank, 'Принят'));
 
 
@@ -111,17 +114,17 @@ class AdminController extends Controller
 
             $tinkoff = new Tinkoff($api_url, $terminal, $secret_key);
         
-               // Найти заказ по orderID_bank
+               //Find order  orderID_bank
                $order = Fabric::where('orderID_bank', $orderID_bank)->get(); 
                
                foreach ($order as $orders) {
-                 // Проверяем, существует ли заказ
+                 // Check if the order exists
                    if ($orders->status_order === 'AUTHORIZED') {
-                    // Подтверждаем статус заказа из API Тинькофф
-                    $status = $tinkoff->cencelPayment($orders->number_tranzak);
+            // Confirming the order status from Tinkoff API
+            $status = $tinkoff->cencelPayment($orders->number_tranzak);
         
-                    // Обновляем статус для всех товаров в этом заказе
-                            // Устанавливаем статус CONFIRMED для каждого товара
+                   // We are updating the status for all items in this order
+                    // Set the REJECTED status for each product
                             $orders->status_order = 'REJECTED'; 
                             $orders->save(); // Сохраняем изменения для каждого товара
                         
@@ -129,8 +132,8 @@ class AdminController extends Controller
                    
                }
             
-                    // Отправляем уведомление пользователю
-                    Mail::to($userEmail)->send(new OrderStatusUpdate($orderID_bank, 'Отклонен'));
+            // Send a notification to the user
+            Mail::to($userEmail)->send(new OrderStatusUpdate($orderID_bank, 'Отклонен'));
         
         
                     return redirect()->back();
@@ -138,25 +141,25 @@ class AdminController extends Controller
                 }
 
 public function confirmed(){
-// Получаем все заказы
+// get all orders
 $orders = Fabric::all();
 
 
 
 
 
-// Устанавливаем локализацию на русский
+// set language
 Carbon::setLocale('ru');
 
-// Получаем только заказы со статусом AUTHORIZED и CONFIRMED
-$confirmOrders = Fabric::where('status_order', 'CONFIRMED')
+    // get only order with status AUTHORIZED and CONFIRMED
+    $confirmOrders = Fabric::where('status_order', 'CONFIRMED')
     ->whereHas('orderUser', function ($query) {
-        $query->where('date', '>=', Carbon::today()); // Фильтруем по дате в OrderUser
+        $query->where('date', '>=', Carbon::today()); // Filter by date in OrderUser
     })
-    ->with(['orderUser']) // Загружаем связанные данные
+    ->with(['orderUser']) //Loading related data
     ->paginate(10);
 
-// Группируем заказы
+// Grouping orders
 $groupedConfirmOrders = $confirmOrders->groupBy(function ($order) {
     return $order->orderUser->file_user . '|' .
            $order->orderUser->comment . '|' .
@@ -168,15 +171,15 @@ $groupedConfirmOrders = $confirmOrders->groupBy(function ($order) {
            $order->orderUser->created_at->format('Y-m-d');
 });
 
-// Сортируем группы по дате
+// Sort groups by date
 $sortedGroupedConfirmOrders = $groupedConfirmOrders->sortBy(function ($group) {
     return Carbon::parse($group->first()->orderUser->date);
 });
 
-// Возвращаем отсортированные группы в представление
+// Return sorted groups to the view
 return view('confirmed', [
-    'sortedGroupedConfirmOrders' => $sortedGroupedConfirmOrders, // Используем отсортированные группы
-    'confirmOrders' => $confirmOrders, // Передаем также объект с пагинацией
+    'sortedGroupedConfirmOrders' => $sortedGroupedConfirmOrders, // Using sorted groups
+    'confirmOrders' => $confirmOrders, // We also pass an object with pagination
 ]);
 }
 }

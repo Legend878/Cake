@@ -26,11 +26,11 @@ class PaymentController extends Controller
     public function createPayment(Request $request)
      { 
 
-         // Получаем данные из сессии
+         // Getting data from the session
          $cart = session('cart', []);
-        //  Создаем экземпляр Zakaz
-         $zakaz = new Zakaz(0,0,'0','0'); // ID не важен для подсчета
-         $totalPrice = $zakaz->getTotal(); // Получаем итоговую стоимость
+        // Create an instance of Zakaz
+         $zakaz = new Zakaz(0,0,'0','0'); //ID is not important for counting
+         $totalPrice = $zakaz->getTotal(); // We get the final cost
          try {
          $validatedData = $request->validate([
             'name' => 'required|string|max:30|regex:/^[а-яА-ЯёЁ\s]+$/u', // Добавлено регулярное выражение
@@ -47,7 +47,7 @@ class PaymentController extends Controller
             'Cakefoto' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
             'comment' => 'nullable|string|max:500',
         ], [
-            // Пользовательские сообщения об ошибках
+            // Custom Error Messages
             'name.required' => 'Имя обязательно для заполнения.',
             'name.regex' => 'Имя обязательно русскими буквами.',
 
@@ -68,14 +68,12 @@ class PaymentController extends Controller
             
             'delivery.required' => 'Поле доставки обязательно для заполнения.',
             'date.required' => 'Поле даты обязательно для заполнения.',
-            // Добавьте аналогичные сообщения для остальных полей
         ]);
     }catch (\Illuminate\Validation\ValidationException $e) {
         return redirect()->back()->withErrors($e->validator)->withInput();
     }
   
-      // Если валидация прошла успешно, вы можете продолжить обработку данных.
-      // Например:
+     
       $name = $validatedData['name'];
       $lastname = $validatedData['lastname'];
       $email = $validatedData['Email'];
@@ -87,7 +85,7 @@ class PaymentController extends Controller
       $padik = $validatedData['padik'];
       $date = $validatedData['date'];
       $time = $validatedData['time'];
-      $file = $request->file('Cakefoto'); // Получаем файл из запроса
+      $file = $request->file('Cakefoto'); 
       $comment = $validatedData['comment'];
     
           try{    

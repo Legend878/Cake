@@ -20,6 +20,7 @@ use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PoliticsController;
 use App\Http\Controllers\TagsController;
+use App\Http\Controllers\ContactController;
 
 
 // Route::get('/send-mail', [CategoryController::class, 'sendMail']);
@@ -33,8 +34,11 @@ Route::middleware(['CSP'])->group(function (){
     Route::get('/capcakes',[CatalogController::class,'ShowCapcakes'])->name('capcakes');
     Route::get('/classic',[CatalogController::class,'ShowClassic'])->name('classic');
     Route::get('/pack',[CatalogController::class,'Showpack'])->name('pack');
+    Route::get('/yandex',function(){
+        return view('yandex');
+    });
 
-    
+    Route::get('/contakt',[ContactController::class,'show'])->name('contakt');
     Route::get('/Question',[QuestionController::class,'index'])->name('question');
     Route::get('/delivery',[DeliveryController::class,'index'])->name('delivery');
     

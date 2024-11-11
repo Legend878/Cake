@@ -26,28 +26,30 @@ class OrderController extends Controller
         $delivery = Delivery::get();
         $time = Time::get();
 
-             // Получаем данные из сессии
+             //Getting data from the session
              $cart = session('cart', []);
-             // Создаем экземпляр Zakaz
-             $zakaz = new Zakaz(0,0,'0','0'); // ID не важен для подсчета
-             $totalPrice = $zakaz->getTotal(); // Получаем итоговую стоимость
+             // Create an instance of Zakaz
+             $zakaz = new Zakaz(0,0,'0','0'); 
+             // ID is not important for counting
+             $totalPrice = $zakaz->getTotal();
+              // We get the final cost
             
-             return view('basket', compact('cart', 'totalPrice','delivery','time','dates')); // Передаем переменные в представление
+             return view('basket', compact('cart', 'totalPrice','delivery','time','dates')); // Passing variables to the view
       //  return view('basket');
     }
 
     public function DeleteBasket(Request $request){
 
         $unique_key = $request->unique_key;
-            // Получаем корзину из сессии
+            // Getting data from the session
        $cart = session('cart', []);
 
-    // Проверяем, существует ли товар с данным ID
+    // Check if a product with a given ID exists
     if (isset($cart[$unique_key])) {
-        // Удаляем товар из корзины
+        // Removing the item from the cart
         unset($cart[$unique_key]);
         
-        // Обновляем сессию
+        // Refreshing the session
         session(['cart' => $cart]);
 
         return redirect()->route('basket');
@@ -74,10 +76,10 @@ class OrderController extends Controller
     {
         
         
-            // Получаем текущую корзину из сессии
+            // Get the current cart from the session
             $cart = session('cart', []);
 
-            // Добавляем товар "Доставка" в корзину
+            // Add the product "Delivery" to the cart
             $deliveryItem = [
                 'id' => 9999,
                 'name_cake' => 'Доставка',
@@ -87,17 +89,17 @@ class OrderController extends Controller
             ];
     
     
-            // Добавляем доставку в корзину
+            // Add delivery to cart
             $cart['9999'] = $deliveryItem;
             session(['cart' => $cart]);
     
-            // Получаем общую стоимость
+            // We get the total cost
             $quantity = 1;
             $zakaz = new Zakaz(0,$quantity,'0','0');
             $totalPrice = $zakaz->getTotal();
 
-             // Получаем общую стоимость
-        $totalPrice = $this->calculateTotalPrice($cart); // Метод для расчета общей стоимости
+             // We get the total cost
+        $totalPrice = $this->calculateTotalPrice($cart); 
         //   return redirect()->route('basket',$totalPrice);
 
 
@@ -110,11 +112,11 @@ class OrderController extends Controller
 
     public function getCart()
 {
-    // Получаем корзину из сессии
+    //Getting the basket from the session
     $cart = session('cart', []);
     
-    // Получаем общую стоимость
-    $totalPrice = $this->getTotal(); // Предполагается, что этот метод рассчитывает общую стоимость
+    // We get the total cost
+    $totalPrice = $this->getTotal(); 
 
     return response()->json(['cart' => $cart, 'totalPrice' => $totalPrice]);
 }
@@ -175,7 +177,7 @@ private function calculateTotalPrice($cart)
          // Валидация входящих данных
     $validatedData = $request->validate([
         'product_id' => 'required|integer', // Убедитесь, что product_id передан и является целым числом
-        'nachinka' => 'required|string', // Если нужно, добавьте валидацию для начинки
+        'nachinka' => 'required|string', //  
         'quantity' => 'required|integer|min:1|max:10', // Валидация количества
     ]);
 

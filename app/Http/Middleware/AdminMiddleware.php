@@ -12,17 +12,17 @@ class AdminMiddleware
   
     public function handle(Request $request, Closure $next)
     {
-         // Проверяем, авторизован ли пользователь как администратор
+         // Check if the user is authorized as an administrator
          if (!session()->has('admin_authenticated') || !Auth::guard('admin')->check()) {
-            return redirect('/login'); // Перенаправление на страницу входа
+            return redirect('/login'); //Redirect to login page
         }
 
-        // Проверяем, ввел ли пользователь код подтверждения
+        // Checking if the user has entered a confirmation code
         if (!session()->has('verification_code_entered')) {
-            return redirect()->route('verification.form'); // Перенаправление на страницу ввода кода
+            return redirect()->route('verification.form'); // Redirect to code entry page
         }
 
-        return $next($request); // Продолжаем выполнение запроса
+        return $next($request); 
     }
     
 }

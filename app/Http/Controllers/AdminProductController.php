@@ -21,21 +21,21 @@ class AdminProductController extends Controller
 
 
         
-    // Найдите товар по ID
+    // Find product  ID
     $product = Product::findOrFail($id);
     
-    // Получите путь к изображению
+    // get path to image
     $imagePath = $product->image;
 
-    // Удалите товар из базы данных
+    // Delete product in database
     $product->delete();
 
-    // Удалите изображение из хранилища
+    // Remove image from storage
     if ($imagePath) {
         Storage::delete($imagePath);
     }
 
-    // Перенаправьте обратно с сообщением об успехе
+    // back
     return redirect()->back();
 
     }
